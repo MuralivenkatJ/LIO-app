@@ -7,9 +7,9 @@ const router = express.Router()
 const controller = require("./controller")
 
 //URLs or ROUTEs
-router.get("/student/", controller.studentVerification)
-router.get("/faculty/", controller.facultyVerification)
-router.get("/payment/", controller.paymentVerification)
+router.get("/student/:s_id", controller.studentVerification)
+router.get("/faculty/:f_id", controller.facultyVerification)
+router.get("/payment/:s_id/:c_id", controller.paymentVerification)
 
 
 //EXPORTing the router
