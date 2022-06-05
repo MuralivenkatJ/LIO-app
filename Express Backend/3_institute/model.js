@@ -1,0 +1,67 @@
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+
+const Student = require("../1_student/model")
+const Course = require("../5_course/model")
+
+const InstituteSchema = new Schema(
+    {
+        i_name: {
+            type: String,
+            required: true
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        password: {
+            type: String,
+            required: true
+        },
+        image: {
+            type: String,
+            required: true
+        },
+        website: {
+            type: String,
+            required: true
+        },
+        payment_details: {
+            name: {
+                type: String,
+                required: true
+            },
+            ac_no: {
+                type: String,
+                required: true
+            },
+            ifsc: {
+                type: String,
+                required: true
+            }
+        },
+        
+
+        payment: [
+            {
+                student: {
+                    type: Schema.Types.ObjectId,
+                    ref: Student
+                },
+                course: {
+                    type: Schema.Types.ObjectId,
+                    ref: Course
+                },
+                utrid: String,
+                screenshot: String,
+                date: Date
+            }
+        ]
+    }
+)
+
+
+var Institute = mongoose.model('Institute', InstituteSchema)
+
+module.exports = Institute

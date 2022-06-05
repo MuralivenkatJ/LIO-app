@@ -6,6 +6,21 @@ const { append } = require("express/lib/response")
 const app = express()
 
 
+//Connecting to the database
+const mongoose = require("mongoose")
+const url = "mongodb://localhost/LearnItOnline"
+
+mongoose.connect(url, {useNewUrlParser: true})
+
+const con = mongoose.connection
+con.on("connected", ()=>{
+    console.log("connected to MongoDB...")
+})
+
+
+
+
+
 //IMPORTing all the ROUTERS
 const router_0 = require("./router")
 const router_1 = require("../1_student/router")
