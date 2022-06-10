@@ -1,18 +1,16 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const Course = require("../5_course/model")
-const student = require("../1_student/model")
 
 const AssignmentQuestionSchema = new Schema(
     {
         course: {
             type: Schema.Types.ObjectId,
-            ref: Course
+            ref: 'Course'
         },
         position: Number,
         question: String,
-        date: Date.now
+        date: Date
     }
 )
 
@@ -26,14 +24,14 @@ const SubmittedAssignmentSchema = new Schema(
     {
         student: {
             type: Schema.Types.ObjectId,
-            ref: Student
+            ref: 'Student'
         },
         question: {
             type: Schema.Types.ObjectId,
-            ref: AssignmentQuestion
+            ref: 'AssignmentQuestion'
         },
         assignment: String,
-        date: Date.now
+        date: Date
     }
 )
 

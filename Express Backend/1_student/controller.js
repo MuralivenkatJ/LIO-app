@@ -1,22 +1,30 @@
-// const con = require("../0_main/mysql")
+const con = require("../0_main/app")
+const mongoose = require("mongoose")
+const Student = require("./model")
+const Institute = require("../3_institute/model")
 
 function register(req, res)
 {
-    var output;
+    var {name, email, password, institute} = req.body
+    if(req.file)
+        var image = req.file.filename
+    
+    var flag = 0
+    Institute.findOne({i_name: institute}, (err, document) => {
+        if(err)
+            console.log("error")
 
-    // con.connect( function(err){
-    //     if(err)
-    //         console.log("Error while connecting to mySQL in student")   //throw err
-
-    //     let sql = "SELECT * FROM student_student"
-
-    //     con.query(sql, function(err, result){
-    //         if(err)
-    //             console.log("Error while executing query in student")   //throw err
-
-    //         output = result
-    //     })
-    // })
+        if(document == null)
+            document = {_id: undefined}
+        
+        Student.create({
+            s_name: name,
+            email: email,
+            password: password,
+            image: image,
+            institute: document._id
+        })
+    })
 
     res.send("The student is registered")
 }
@@ -37,39 +45,6 @@ function mycourses(req, res)
     var enrolled_courses = []
     var s_id = 6
 
-    // con.connect( function(err){
-    //     if(err)
-    //         console.log("Error while connecting to mySQL in student")   //throw err
-        
-    //     let sql = `SELECT *
-    //                FROM course_course C
-    //                JOIN student_enrolls E on E.c_id_id = C.c_id
-    //                WHERE E.s_id_id = ${s_id};`
-
-    //     con.query(sql, function(err, result){
-    //         if(err)
-    //             console.log("Error while executing query in student")   //throw err
-
-    //         // Object.keys(result).forEach(
-    //         //     function(key){
-    //         //         let row = result[key]
-
-    //         //         //PRINTING THE RESULT
-    //         //         Object.keys(row).forEach(
-    //         //             function(key){
-    //         //                 console.log(key + " : " + row[key])
-    //         //             }
-    //         //         )
-    //         //         console.log("\n\n\n")
-    //         //     }
-    //         // )
-            
-    //         enrolled_courses = result
-    //     })
-    // })
-
-
-    // res.json(enrolled_courses)
     res.send("This is my course page")
 }
 
@@ -77,36 +52,7 @@ function wishlist(req, res)
 {
     var wishlist = []
     var s_id = 5
-    
-    // con.connect( function(err){
-    //     if(err)
-    //         console.log("Error while connecting to mySQL in student")   //throw err
-        
-    //     let sql = `SELECT *
-    //                FROM course_course C
-    //                JOIN student_wishlist W on W.c_id_id = C.c_id
-    //                WHERE W.s_id_id = ${s_id};`
 
-    //     con.query(sql, function(err, result){
-    //         if(err)
-    //             console.log("Error while executing query in student")   //throw err
-
-    //         Object.keys(result).forEach(
-    //             function(key){
-    //                 let row = result[key]
-    //                 wishlist[key] = row
-
-    //                 //PRINTING THE RESULT
-    //                 Object.keys(row).forEach(
-    //                     function(key){
-    //                         console.log(key + " : " + row[key])
-    //                     }
-    //                 )
-    //                 console.log("\n\n\n")
-    //             }
-    //         )
-    //     })
-    // })
 
     res.send("This is wishlist page")
 }

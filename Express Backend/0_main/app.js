@@ -1,9 +1,17 @@
 const express = require("express")
 const { append } = require("express/lib/response")
+const bodyParser = require("body-parser")
 
 
 //Main router which receives all the URLs and distributes
 const app = express()
+
+//This is required for extracting data from req(when http methode is POST)
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+
+//making public folder as static
+app.use(express.static(__dirname + '../public/'))
 
 
 //Connecting to the database
@@ -54,3 +62,7 @@ app.use("/quiz/", router_8)
 app.listen(3000, () => {
     console.log("The server is running.....")
 })
+
+
+//Exporting mongodb con
+module.exports = con

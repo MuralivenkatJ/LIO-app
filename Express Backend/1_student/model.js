@@ -2,11 +2,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 
-const Institute = require("../3_institute/model")
-const Course    = require("../5_course/model")
-const QuizQuestion = require("../8_quiz/model")
-const AssignmentQuestion = require("../7_assignment/model").AssignmentQuestion
-
 const StudentSchema = new Schema(
     {
         s_name: {
@@ -29,14 +24,15 @@ const StudentSchema = new Schema(
         image: String,
         institute: {
             type: Schema.Types.ObjectId,
-            ref: Institute
+            ref: 'Institute',
+            required: false
         },
 
         enrolled: [
             {
                 course: {
                     type: Schema.Types.ObjectId,
-                    ref: Course
+                    ref: 'Course'
                 },
                 date: Date,
                 status: {
@@ -48,7 +44,7 @@ const StudentSchema = new Schema(
                     {
                         quiz_questions: {
                             type: Schema.Types.ObjectId,
-                            ref: QuizQuestion
+                            ref: 'QuizQuestion'
                         },
                         marks: Number
                     }
@@ -57,7 +53,7 @@ const StudentSchema = new Schema(
                     {
                         assignment_question: {
                             type: Schema.Types.ObjectId,
-                            ref: AssignmentQuestion
+                            ref: 'AssignmentQuestion'
                         },
                         marks: Number
                     }
@@ -68,7 +64,7 @@ const StudentSchema = new Schema(
         wishlist: [
             {
                 type: Schema.Types.ObjectId,
-                ref: Course
+                ref: 'Course'
             }
         ]
     }

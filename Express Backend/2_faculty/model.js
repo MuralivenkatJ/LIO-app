@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Institute = require("../3_institute/model")
-const Course = require("../5_course/model")
 
 const FacultySchema = new Schema(
     {
@@ -37,13 +35,13 @@ const FacultySchema = new Schema(
         },
         institute: {
             type: Schema.Types.ObjectId,
-            ref: Institute
+            ref: 'Institute'
         },
 
         courses: [
             {
                 type: Schema.Types.ObjectId,
-                ref: Course
+                ref: 'Course'
             }
         ]
     }

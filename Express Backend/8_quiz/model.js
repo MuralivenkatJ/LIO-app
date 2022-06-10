@@ -1,13 +1,12 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const Course = require("../5_course/model")
 
 const QuizQuestionSchema = new Schema(
     {
         course: {
             type: Schema.Types.ObjectId,
-            ref: Course
+            ref: 'Course'
         },
         position: Number,
         questionslist: [
@@ -17,7 +16,7 @@ const QuizQuestionSchema = new Schema(
                 answer: String
             }
         ],
-        date: Date.now
+        date: Date
     }
 )
 

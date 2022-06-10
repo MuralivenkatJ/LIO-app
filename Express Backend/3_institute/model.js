@@ -1,14 +1,13 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Student = require("../1_student/model")
-const Course = require("../5_course/model")
 
 const InstituteSchema = new Schema(
     {
         i_name: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         email: {
             type: String,
@@ -28,7 +27,7 @@ const InstituteSchema = new Schema(
             required: true
         },
         payment_details: {
-            name: {
+            ac_name: {
                 type: String,
                 required: true
             },
@@ -47,11 +46,11 @@ const InstituteSchema = new Schema(
             {
                 student: {
                     type: Schema.Types.ObjectId,
-                    ref: Student
+                    ref: 'Student'
                 },
                 course: {
                     type: Schema.Types.ObjectId,
-                    ref: Course
+                    ref: 'Course'
                 },
                 utrid: String,
                 screenshot: String,

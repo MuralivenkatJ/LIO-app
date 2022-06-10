@@ -1,7 +1,29 @@
-const con = require("../0_main/mysql")
+const Institute = require("../3_institute/model")
+const Faculty = require("./model")
 
 function register(req, res)
 {
+    var {name, email, password, qualification, phone, institute} = req.body
+    var image = req.file.filename
+
+    Institute.findOne({i_name: institute}, (err, document) => {
+        if(err)
+            console.log(err)
+        
+        if(document == null)
+            document = {_id: undefined}
+
+        Faculty.create({
+            f_name: name,
+            qualification: qualification,
+            image: image,
+            email: email,
+            password: password,
+            phone: phone,
+            institute: document._id
+        })
+    })
+
     res.send("You are registered as a faculty")
 }
 
@@ -18,38 +40,7 @@ function logout(req, res)
 
 function mycourses(req, res)
 {
-    var uploaded_courses = []
-    var f_id = 6
-
-    con.connect( function(err){
-        if(err)
-            console.log("Error while connecting to mySQL in faculty")   //throw err
-
-        let sql = `SELECT *
-                   FROM course_course C
-                   WHERE C.f_id_id = ${f_id};`
-        
-        con.query(sql, function(err, result){
-            if(err)
-                console.log("Error while executing query in faculty")   //throw err
-
-            Object.keys(result).forEach(
-                function(key){
-                    let row = result[key]
-                    uploaded_courses[key] = result
-
-                    //PRINTING THE RESULT
-                    Object.keys(row).forEach(
-                        function(key){
-                            console.log(key + " : " + row[key])
-                        }
-                    )
-                    console.log("\n\n\n")
-                }
-            )
-        })
-        
-    })
+    
 
     res.send("This is my courses page(faculty)")
 }

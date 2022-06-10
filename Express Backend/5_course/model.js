@@ -1,11 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Faculty = require("../2_faculty/model")
-const Student = require("../1_student/model")
-const AssignmentQuestion = require("../7_assignment/model").AssignmentQuestion
-const QuizQuestion = require("../8_quiz/model")
-
 const CourseSchema = new Schema(
     {
         c_name: {
@@ -22,7 +17,7 @@ const CourseSchema = new Schema(
         },
         faculty: {
             type: Schema.Types.ObjectId,
-            ref: Faculty
+            ref: 'Faculty'
         },
         specialization: {
             type: String,
@@ -46,10 +41,10 @@ const CourseSchema = new Schema(
         },
         date: {
             type: Date,
-            default: Date.now
+            required: true
         },
         duration: {
-            type: Number,
+            type: String,
             required: true
         },
         no_of_videos: {
@@ -67,25 +62,25 @@ const CourseSchema = new Schema(
             {
                 student: {
                     type: Schema.Types.ObjectId,
-                    ref: Student
+                    ref: 'Student'
                 }, 
                 rate: Number, 
                 desc: String, 
-                date: Date.now
+                date: Date
             }
         ],
 
         assignment_questions: [
             {
                 type: Schema.Types.ObjectId,
-                ref: AssignmentQuestion
+                ref: 'AssignmentQuestion'
             }
         ],
 
         quiz_questions: [
             {
                 type: Schema.Types.ObjectId,
-                ref: QuizQuestion
+                ref: 'QuizQuestion'
             }
         ]
     }
