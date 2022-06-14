@@ -28,8 +28,8 @@ router.post("/register/", uploadImage, controller.register)           // All the
 router.get("/login/", controller.login)                 // should be
 router.get("/logout/", controller.logout)               // POST method
 
-router.get("/mycourses/", controller.mycourses)
-router.get("/wishlist/", controller.wishlist)
+router.get("/mycourses/:s_id", controller.mycourses)
+router.get("/wishlist/:s_id", controller.wishlist)
 
 
 

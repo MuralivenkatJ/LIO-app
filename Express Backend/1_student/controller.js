@@ -1,6 +1,7 @@
 const con = require("../0_main/app")
 const mongoose = require("mongoose")
 const Student = require("./model")
+const Course = require("../5_course/model")
 const Institute = require("../3_institute/model")
 
 function register(req, res)
@@ -40,21 +41,29 @@ function logout(req, res)
 }
 
 
-function mycourses(req, res)
+async function mycourses(req, res)
 {
-    var enrolled_courses = []
-    var s_id = 6
+    var enrolled_courses = await Student.findById(req.params.s_id)
+        .select({enrolled: 1})
+        .populate({path: "enrolled.course"})
+        .catch( (err) => {
+            console.log(err)
+        })
 
-    res.send("This is my course page")
+    res.json(enrolled_courses)
 }
 
-function wishlist(req, res)
+async function wishlist(req, res)
 {
-    var wishlist = []
-    var s_id = 5
+    var wishlist = await Student.findById(req.params.s_id)
+        .select({wishlist: 1})
+        .populate({path: "wishlist"})
+        .catch( (err) => {
+            console.log(err)
+        })
 
 
-    res.send("This is wishlist page")
+    res.json(wishlist)
 }
 
 

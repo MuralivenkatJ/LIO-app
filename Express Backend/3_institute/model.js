@@ -54,7 +54,10 @@ const InstituteSchema = new Schema(
                 },
                 utrid: String,
                 screenshot: String,
-                date: Date
+                date: {
+                    type: Date,
+                    default: Date.now
+                }
             }
         ]
     }

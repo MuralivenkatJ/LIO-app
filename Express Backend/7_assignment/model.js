@@ -10,7 +10,10 @@ const AssignmentQuestionSchema = new Schema(
         },
         position: Number,
         question: String,
-        date: Date
+        date: {
+            type: Date,
+            default: Date.now
+        }
     }
 )
 
@@ -31,7 +34,10 @@ const SubmittedAssignmentSchema = new Schema(
             ref: 'AssignmentQuestion'
         },
         assignment: String,
-        date: Date
+        date: {
+            type: Date,
+            default: Date.now
+        }
     }
 )
 

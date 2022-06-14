@@ -34,7 +34,10 @@ const StudentSchema = new Schema(
                     type: Schema.Types.ObjectId,
                     ref: 'Course'
                 },
-                date: Date,
+                date: {
+                    type: Date,
+                    default: Date.now
+                },
                 status: {
                     type: String,
                     default: 'inprogress'

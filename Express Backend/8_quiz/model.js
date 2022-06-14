@@ -16,7 +16,10 @@ const QuizQuestionSchema = new Schema(
                 answer: String
             }
         ],
-        date: Date
+        date: {
+            type: Date,
+            default: Date.now
+        }
     }
 )
 

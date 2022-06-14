@@ -1,34 +1,84 @@
+const Student = require("../1_student/model")
 const Faculty = require("../2_faculty/model")
 const Course = require("./model")
 
-function unenrolled(req, res)
+async function unenrolled(req, res)
 {
-    res.send("This is the course details")
+    var course_details = await Course.findById(req.params.c_id)
+        .select({assignment_questions: 0, quiz_questions: 0})
+        .populate({path: "faculty", populate: {path: "institute"}})
+        .catch( (err) => {
+            console.log(err)
+        })
+    
+
+    res.json(course_details)
 }
 
-function addToWishlist(req, res)
+async function addToWishlist(req, res)
 {
+    var course = await Course.findById(req.params.c_id)
+        .catch( (err) => {
+            console.log(err)
+        })
+
+    var updated = await Student.findByIdAndUpdate(req.params.s_id, 
+        {$push: {wishlist: course._id}}, {new: true})
+        .catch( (err) => {
+            console.log(err)
+        })
+    
+    // console.log(updated)
+
     res.send("This course has been added to the wishlist")
 }
 
-function removeFromWishlist(req, res)
+async function removeFromWishlist(req, res)
 {
+    var course = await Course.findById(req.params.c_id)
+        .catch( (err) => {
+            console.log(err)
+        })
+
+    var updated = await Student.findByIdAndUpdate(req.params.s_id, 
+        {$pull: {wishlist: course._id}}, {new: true})
+        .catch( (err) => {
+            console.log(err)
+        })
+    
+    // console.log(updated)
+
     res.send("This course has been removed from the wishlist")
 }
 
-function enroll(req, res)
+async function enroll(req, res)
 {
+    var course = await Course.findById(req.params.c_id)
+        .catch( (err) => {
+            console.log(err)
+        })
+
+    var enrolling_course = {"course": course._id}
+
+    var updated = await Student.findByIdAndUpdate(req.params.s_id, 
+        {$push: {enrolled: enrolling_course}}, {new: true})
+        .catch( (err) => {
+            console.log(err)
+        })
+    
+    // console.log(updated)
+
     res.send("This course has been enrolled")
 }
 
 function upload(req, res)
 {
-    var {id, name, desc, spec, price, level, guided_project, playlist, skills} = req.body
+    var {f_id, name, desc, spec, price, level, guided_project, playlist, skills} = req.body
     var image = req.file.filename
     skills = skills.split(",")
-    var date = Date.now(), duration = "30:00", n_videos = 40
+    var duration = "30:00", n_videos = 40
 
-    Faculty.findById(id, (err, document) => {
+    Faculty.findById(f_id, (err, document) => {
         if(err)
             console.log(err)
         else{
@@ -42,7 +92,6 @@ function upload(req, res)
                 level: level,
                 guided_project: guided_project,
                 playlistId: playlist,
-                date: date,
                 duration: duration,
                 no_of_videos: n_videos,
                 skills: skills
