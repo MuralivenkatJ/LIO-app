@@ -1,8 +1,11 @@
-const con = require("../0_main/app")
 const mongoose = require("mongoose")
 const Student = require("./model")
 const Course = require("../5_course/model")
 const Institute = require("../3_institute/model")
+
+const ip = "http:\\\\127.0.0.1:3000\\"
+
+const c_folder = ip + "\\course_images\\"
 
 function register(req, res)
 {
@@ -10,7 +13,6 @@ function register(req, res)
     if(req.file)
         var image = req.file.filename
     
-    var flag = 0
     Institute.findOne({i_name: institute}, (err, document) => {
         if(err)
             console.log("error")
@@ -50,20 +52,27 @@ async function mycourses(req, res)
             console.log(err)
         })
 
+    enrolled_courses.enrolled.forEach( (document) => {
+        document.course.image = c_folder + document.course.image
+    })
+
     res.json(enrolled_courses)
 }
 
 async function wishlist(req, res)
 {
-    var wishlist = await Student.findById(req.params.s_id)
+    var wishlist_courses = await Student.findById(req.params.s_id)
         .select({wishlist: 1})
         .populate({path: "wishlist"})
         .catch( (err) => {
             console.log(err)
         })
 
+    wishlist_courses.wishlist.forEach( (document) => {
+        document.image = c_folder + document.image
+    })
 
-    res.json(wishlist)
+    res.json(wishlist_courses)
 }
 
 

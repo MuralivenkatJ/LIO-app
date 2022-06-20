@@ -1,5 +1,8 @@
-const con = require("./app")
 const Course = require("../5_course/model")
+
+const ip = "http:\\\\127.0.0.1:3000\\"
+
+const c_folder = ip + "\\course_images\\"
 
 async function explore(req, res)
 {
@@ -45,6 +48,16 @@ async function explore(req, res)
         .catch( (err) => {
             console.log(err)
         })
+
+    most_viewed.forEach( (document) => {
+        document.image = c_folder + document.image
+    })
+    recently_launched.forEach( (document) => {
+        document.image = c_folder + document.image
+    })
+    guided_project.forEach( (document) => {
+        document.image = c_folder + document.image
+    })
 
     var explore = {"specialization": specialization, "most_viewed": most_viewed, "recently_launched": recently_launched, "guided_project": guided_project}
 

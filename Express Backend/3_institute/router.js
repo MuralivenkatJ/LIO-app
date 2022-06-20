@@ -12,7 +12,7 @@ const controller = require("./controller")
 
 //IMAGE UPLOADING
 const destinationAndFilename = multer.diskStorage({
-    destination: "public/institute/",
+    destination: "public/institute_images/",
     filename: (req, file, cb) => {
         cb(null, "institute_" + Date.now() + path.extname(file.originalname))
     }

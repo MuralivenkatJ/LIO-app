@@ -1,16 +1,28 @@
 const Student = require("../1_student/model")
 const Faculty = require("../2_faculty/model")
 const Course = require("./model")
+const path = require("path")
+
+// const ip = require("../0_main/app").getIp
+const ip = "http:\\\\127.0.0.1:3000\\"
+
+const c_folder = ip + "\\course_images\\"
+const f_folder = ip + "\\faculty_images\\"
+const i_folder = ip + "\\institute_images\\"
+
 
 async function unenrolled(req, res)
 {
     var course_details = await Course.findById(req.params.c_id)
-        .select({assignment_questions: 0, quiz_questions: 0})
+        .select({assignment_questions: 0, quiz_questions: 0, playlistId: 0})
         .populate({path: "faculty", populate: {path: "institute"}})
         .catch( (err) => {
             console.log(err)
         })
     
+    course_details.image = c_folder + course_details.image
+    course_details.faculty.image = f_folder + course_details.faculty.image
+    course_details.faculty.institute.image = i_folder + course_details.faculty.institute.image
 
     res.json(course_details)
 }

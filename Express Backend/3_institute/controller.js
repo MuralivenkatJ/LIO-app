@@ -17,7 +17,7 @@ function register(req, res)
     i.save( (err, result) => {
         if(err)
             console.log(err)
-        console.log(result)
+        // console.log(result)
     })
 
     res.send("You are registered as an institute")

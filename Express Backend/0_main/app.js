@@ -1,6 +1,7 @@
 const express = require("express")
 const { append } = require("express/lib/response")
 const bodyParser = require("body-parser")
+const path = require("path")
 
 
 //Main router which receives all the URLs and distributes
@@ -11,7 +12,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 //making public folder as static
-app.use(express.static(__dirname + '../public/'))
+app.use(express.static(path.dirname(__dirname) + '\\public\\'))
 
 
 //Connecting to the database
@@ -59,10 +60,13 @@ app.use("/quiz/", router_8)
 
 
 //Starting the server
+module.exports.getIp = "http:\\\\127.0.0.1:3000\\"
+// function abc() {
+//     return {"ip": "http:\\\\127.0.0.1:3000\\"}
+// }
+
 app.listen(3000, () => {
     console.log("The server is running.....")
 })
 
-
-//Exporting mongodb con
-module.exports = con
+// console.log(module.exports.getIp)

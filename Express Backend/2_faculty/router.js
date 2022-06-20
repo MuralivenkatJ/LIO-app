@@ -10,7 +10,7 @@ const controller = require("./controller")
 
 //to Upload image
 const destinationAndFilename = multer.diskStorage({
-    destination: "public/faculty/",
+    destination: "public/faculty_images/",
     filename: (req, file, cb) => {
         cb(null, "faculty_" + Date.now() + path.extname(file.originalname))
     }
@@ -26,7 +26,7 @@ router.post("/register/", uploadImage, controller.register)           // All the
 router.get("/login/", controller.login)                 // should be
 router.get("/logout/", controller.logout)               // POST method
 
-router.get("/mycourses/", controller.mycourses)
+router.get("/mycourses/:f_id", controller.mycourses)
 
 
 
