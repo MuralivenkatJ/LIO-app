@@ -3,7 +3,14 @@ const Course = require("../5_course/model")
 const AssignmentQuestion = require("./model").AssignmentQuestion
 const SubmittedAssignment = require("./model").SubmittedAssignment
 
-async function assignment(req, res)
+const fs = require("fs")
+const path = require("path")
+
+const ip = "http:\\\\127.0.0.1:3000\\"
+const a_folder = ip + "\\assignment_files\\"
+
+//Student view
+async function questions(req, res)
 {
     var assignments = await Course.findById(req.params.c_id)
         .select({assignment_questions: 1})
@@ -13,35 +20,6 @@ async function assignment(req, res)
         })
 
     res.json(assignments)
-}
-
-async function upload(req, res)
-{
-    var {c_id, pos, question} = req.body
-
-    var course = await Course.findById(c_id)
-
-    var assignment = new AssignmentQuestion({
-        course: course._id,
-        position: pos,
-        question: question
-    })
-
-    assignment.save( (err, result) => {
-        if(err)
-            console.log(err)
-        
-        // console.log(result)
-    })
-
-    var updated = await Course.findByIdAndUpdate(c_id, 
-        {$push: {assignment_questions: assignment._id}}, {new: true})
-        .catch( (err) => {
-            console.log(err)
-        })
-    
-
-    res.send("This assignment is uploaded")
 }
 
 async function submit(req, res)
@@ -75,10 +53,85 @@ async function submit(req, res)
     res.send("This assignment is submitted")
 }
 
-function grade(req, res)
+//Faculty view
+async function answers(req, res)
 {
+    var answers = await SubmittedAssignment.find()
+        .select({})
+        .where({question: req.params.a_id})
+
+    answers.forEach( (document) => {
+        document.assignment = a_folder + document.assignment
+    })
+
+    res.json(answers)
+}
+
+async function grade(req, res)
+{
+    var {s_id, aq_id, marks} = req.body
+
+    var assignment_q = await AssignmentQuestion.findById(aq_id)
+    if(marks > assignment_q.max_marks)
+        return res.send("Marks cannot be greater than maximum marks")
+
+    //updating the marks in the student collection
+    var assignment_marks = {"assignment_question": assignment_q._id, 
+                            "marks": marks}
+    
+    await Student.updateOne({'_id': s_id, 'enrolled.course': assignment_q.course},
+            {"$push": {"enrolled.$.assignment_marks": assignment_marks}})
+
+    
+    //deleting the file and document in SubmittedAssignment
+    var assignment_a = await SubmittedAssignment.findOne({'student': s_id, 'question': aq_id})
+
+    var file_path = path.dirname(__dirname) + "\\public\\assignment_files\\" +  assignment_a.assignment
+
+    fs.unlink(file_path, (err) => {
+        if(err)
+            console.log(err)
+        // console.log("File is deleted")
+    })
+
+    SubmittedAssignment.findByIdAndDelete(assignment_a._id)
+        .catch( (err) => {
+            console.log(err)
+        })
+
     res.send("This assignment is graded")
 }
 
+async function upload(req, res)
+{
+    var {c_id, pos, question} = req.body
 
-module.exports = {assignment, upload, submit, grade}
+    var course = await Course.findById(c_id)
+
+    var assignment = new AssignmentQuestion({
+        course: course._id,
+        position: pos,
+        question: question
+    })
+
+    assignment.save( (err, result) => {
+        if(err)
+            console.log(err)
+        
+        // console.log(result)
+    })
+
+    var updated = await Course.findByIdAndUpdate(c_id, 
+        {$push: {assignment_questions: assignment._id}}, {new: true})
+        .catch( (err) => {
+            console.log(err)
+        })
+    
+
+    res.send("This assignment is uploaded")
+}
+
+
+
+
+module.exports = {questions, answers, upload, submit, grade}

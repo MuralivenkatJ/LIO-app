@@ -9,7 +9,14 @@ const AssignmentQuestionSchema = new Schema(
             ref: 'Course'
         },
         position: Number,
-        question: String,
+        question: {
+            type: String,
+            required: true
+        },
+        max_marks: {
+            type: Number,
+            default: 10
+        },
         date: {
             type: Date,
             default: Date.now

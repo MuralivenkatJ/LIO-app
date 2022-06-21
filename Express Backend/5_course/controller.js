@@ -70,10 +70,20 @@ async function enroll(req, res)
             console.log(err)
         })
 
+    //Checking if the student is already enrolled or not
+    var student = await Student.findOne()
+        .where({$and: [ {'_id': req.params.s_id}, 
+                        {'enrolled.course': course._id}]
+                })
+
+    if(student != null)
+        return res.send("Already enrolled")
+
+    //enrolling
     var enrolling_course = {"course": course._id}
 
     var updated = await Student.findByIdAndUpdate(req.params.s_id, 
-        {$push: {enrolled: enrolling_course}}, {new: true})
+        {$push: {'enrolled': enrolling_course}}, {new: true})
         .catch( (err) => {
             console.log(err)
         })

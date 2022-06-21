@@ -21,10 +21,11 @@ const uploadFile = multer({storage: destinationAndFilename}).single("assignment"
 
 
 // URLs or ROUTEs
-router.get("/:c_id", controller.assignment)
+router.get("/questions/:c_id", controller.questions)
+router.get("/answers/:a_id", controller.answers)
+router.post("/grade/", controller.grade)
 router.post("/upload/", controller.upload)
 router.post("/submit/", uploadFile, controller.submit)
-router.get("/grade/", controller.grade)
 
 
 //exporting the router
