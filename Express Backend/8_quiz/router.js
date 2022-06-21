@@ -1,16 +1,19 @@
 const express = require("express")
+const bodyParser = require("body-parser")
 
 //creating the router
 const router = express.Router()
+router.use(bodyParser.json())
 
 //importing the controller
 const controller = require("./controller")
 
 
 //URLs or ROUTEs
-router.get("/", controller.quiz)
-router.get("/upload/", controller.upload)           //POST
-router.get("/submit/", controller.submit)
+router.get("/:c_id", controller.quiz)
+router.get("/questions/:q_id", controller.quizQuestions)
+router.post("/upload/", controller.upload)           //POST
+router.post("/submit/", controller.submit)
 
 
 //exporting the router
