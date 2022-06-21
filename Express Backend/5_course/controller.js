@@ -65,22 +65,8 @@ async function removeFromWishlist(req, res)
 
 async function enroll(req, res)
 {
-    var course = await Course.findById(req.params.c_id)
-        .catch( (err) => {
-            console.log(err)
-        })
-
-    //Checking if the student is already enrolled or not
-    var student = await Student.findOne()
-        .where({$and: [ {'_id': req.params.s_id}, 
-                        {'enrolled.course': course._id}]
-                })
-
-    if(student != null)
-        return res.send("Already enrolled")
-
     //enrolling
-    var enrolling_course = {"course": course._id}
+    var enrolling_course = {"course": req.params.c_id}
 
     var updated = await Student.findByIdAndUpdate(req.params.s_id, 
         {$push: {'enrolled': enrolling_course}}, {new: true})

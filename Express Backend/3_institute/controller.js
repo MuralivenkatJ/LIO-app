@@ -1,4 +1,10 @@
 const Institute = require("./model")
+const Student = require("../1_student/model")
+const Faculty = require("../2_faculty/model")
+
+const ip = "http:\\\\127.0.0.1:3000\\"
+const f_folder = ip + "\\faculty_images\\"
+const screenshot_folder = ip + "\\payment_screenshots\\"
 
 function register(req, res)
 {
@@ -34,11 +40,40 @@ function logout(req, res)
 }
 
 
-function approvals(req, res)
+async function approvals(req, res)
 {
-    
+    var student_verification = await Student.find()
+        .select({s_name: 1, email: 1})
+        .where({$and: [{institute: req.params.i_id}, {isVerified: false}]})
+        .catch( (err) => {
+            console.log(err)
+        })
 
-    res.send("This is my approvals page")
+    var faculty_verification = await Faculty.find()
+        .select({f_name: 1, qualification: 1, image: 1, email: 1, phone: 1})
+        .where({$and: [{institute: req.params.i_id}, {isVerified: false}]})
+        .catch( (err) => {
+            console.log(err)
+        })
+
+    faculty_verification.forEach( (document) => {
+        document.image = f_folder + document.image
+    })
+
+    var payment_verification = await Institute.findById(req.params.i_id)
+        .select({payment: 1})
+        .catch( (err) => {
+            console.log(err)
+        })
+    
+    payment_verification = payment_verification.payment
+    payment_verification.forEach( (document) => {
+        document.screenshot = screenshot_folder + document.screenshot
+    })
+    
+    var approvals = {"student_verification": student_verification, "faculty_verification": faculty_verification, "payment_verification": payment_verification}
+
+    res.json(approvals)
 }
 
 

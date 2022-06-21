@@ -2,6 +2,7 @@ const express = require("express")
 const multer = require("multer")
 const path = require("path")
 
+const c_v = require("../helpers/course_verification")
 
 //creating the router
 const router = express.Router()
@@ -26,7 +27,7 @@ const uploadImage = multer({storage: destinationAndFilename}).single("image")
 router.get("/unenrolled/:c_id/", controller.unenrolled)
 router.get("/addToWishlist/:s_id/:c_id/", controller.addToWishlist)
 router.get("/removeFromWishlist/:s_id/:c_id/", controller.removeFromWishlist)
-router.get("/enroll/:s_id/:c_id/", controller.enroll)
+router.get("/enroll/:s_id/:c_id/", c_v.isTheCourseFree, controller.enroll)
 router.post("/upload/", uploadImage, controller.upload)                   //POST
 router.get("/enrolled/", controller.enrolled)
 router.get("/watched/", controller.watched)

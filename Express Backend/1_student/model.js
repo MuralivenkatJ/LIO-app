@@ -21,7 +21,10 @@ const StudentSchema = new Schema(
             type: Boolean,
             default: false
         },
-        image: String,
+        image: {
+            type: String,
+            default: 'default.jpg'
+        },
         institute: {
             type: Schema.Types.ObjectId,
             ref: 'Institute',
