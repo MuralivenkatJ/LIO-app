@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const Student = require("./model")
 const Course = require("../5_course/model")
 const Institute = require("../3_institute/model")
+const { isEnrolled } = require("../helpers/course_verification")
 
 const ip = "http:\\\\127.0.0.1:3000\\"
 const c_folder = ip + "\\course_images\\"
@@ -62,6 +63,66 @@ async function payment(req, res)
     res.send("Payment screenshot is uploaded")
 }
 
+async function review(req, res)
+{
+    var {s_id, c_id, rate, desc} = req.body
+    var review = {"student": s_id, "rate": rate, "desc": desc}
+
+
+    //Check if the student is enrolled for the course
+    if( await ! isEnrolled(s_id, c_id) )
+        return res.send("You are not enrolled for this course. So you cannot review this course.")
+
+    //Check if the student has already given the review (in that case update it)
+    var isReviewed = await Course.findById(c_id)
+        .select({reviews: 1})
+        .where({"reviews.student": s_id})
+        .catch( (err) => {
+            console.log(err)
+        })
+    
+    if(isReviewed)
+    {
+        var c = await Course.findById(c_id)
+            .select({reviews: 1, rating: 1})
+            .where()
+            .catch( (err) => {
+                console.log(err)
+            })
+        
+        var n = parseFloat(c.reviews.length)
+        var rating = parseFloat(c.rating)
+        var old_rate = 0.0
+        for(let i=0; i<n; i++)
+            if(c.reviews[i].student.toString() == s_id)
+            {
+                old_rate = parseFloat(c.reviews[i].rate)
+                break;
+            }
+        
+        var new_rating = ( rating * n - old_rate + parseFloat(rate) ) / n;
+        console.log(new_rating)
+
+        //Update the existing review
+        c = await Course.updateOne({_id: c_id, "reviews.student": s_id},
+            {$set: {"reviews.$.rate": rate, "reviews.$.desc": desc, "reviews.$.date": Date.now(), rating: new_rating}})
+    }
+    else
+    {
+        var c = await Course.findByIdAndUpdate(c_id, {$push: {"reviews": review}}, {new: true})
+
+        //finding the number of reviews 
+        var n = parseFloat(c.reviews.length)
+        var rating = parseFloat(c.rating)
+        var new_rating = ( rating * parseFloat((n-1))  + parseFloat(rate) ) / n;
+
+        c = await Course.findByIdAndUpdate(c_id, {"rating": new_rating}, {new: true})
+        console.log(c)
+    }
+
+    res.send("Review is given for the course")
+}
+
 
 async function mycourses(req, res)
 {
@@ -96,4 +157,4 @@ async function wishlist(req, res)
 }
 
 
-module.exports = {register, login, logout, payment, mycourses, wishlist}
+module.exports = {register, login, logout, payment, review, mycourses, wishlist}

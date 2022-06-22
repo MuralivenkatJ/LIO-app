@@ -6,6 +6,7 @@ const path = require("path")
 // const ip = require("../0_main/app").getIp
 const ip = "http:\\\\127.0.0.1:3000\\"
 
+const s_folder = ip + "\\student_images\\"
 const c_folder = ip + "\\course_images\\"
 const f_folder = ip + "\\faculty_images\\"
 const i_folder = ip + "\\institute_images\\"
@@ -15,7 +16,10 @@ async function unenrolled(req, res)
 {
     var course_details = await Course.findById(req.params.c_id)
         .select({assignment_questions: 0, quiz_questions: 0, playlistId: 0})
-        .populate({path: "faculty", populate: {path: "institute"}})
+        .populate({path: "faculty", 
+                        select: {password: 0, isVerified: 0, courses: 0}, populate: {path: "institute", 
+                            select: {payment_details: 0, password: 0, payment: 0}}})
+        .populate({path: "reviews.student", select: {s_name: 1, c_name: 1, image: 1, email: 1}})
         .catch( (err) => {
             console.log(err)
         })
@@ -23,6 +27,9 @@ async function unenrolled(req, res)
     course_details.image = c_folder + course_details.image
     course_details.faculty.image = f_folder + course_details.faculty.image
     course_details.faculty.institute.image = i_folder + course_details.faculty.institute.image
+    course_details.reviews.forEach( (review) => {
+        review.student.image = s_folder + review.student.image
+    })
 
     res.json(course_details)
 }

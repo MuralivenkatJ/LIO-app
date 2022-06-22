@@ -38,6 +38,7 @@ router.get("/login/", controller.login)                 // should be
 router.get("/logout/", controller.logout)               // POST method
 
 router.post("/payment/", uploadScreenshot, controller.payment)
+router.post("/review/", controller.review)
 
 router.get("/mycourses/:s_id", controller.mycourses)
 router.get("/wishlist/:s_id", controller.wishlist)

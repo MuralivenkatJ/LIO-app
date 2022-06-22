@@ -55,6 +55,10 @@ const CourseSchema = new Schema(
             type: Number,
             default: 0
         },
+        rating: {
+            type: Number,
+            default: 0.0
+        },
 
         skills: [String],
 
