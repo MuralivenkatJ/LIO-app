@@ -7,26 +7,64 @@ const { isEnrolled } = require("../helpers/course_verification")
 const ip = "http:\\\\127.0.0.1:3000\\"
 const c_folder = ip + "\\course_images\\"
 
-function register(req, res)
+//EMAIL
+const nodemailer = require("nodemailer")
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: "liolearnitonline@gmail.com",
+        pass: "bjsmzsktvkkaqkgn"
+    }
+})
+
+async function register(req, res)
 {
     var {name, email, password, institute} = req.body
     if(req.file)
         var image = req.file.filename
     
-    Institute.findOne({i_name: institute}, (err, document) => {
-        if(err)
-            console.log("error")
+    var i = await Institute.findOne({i_name: institute})
+                .catch( (err) => {
+                    console.log(err)
+                    res.send(err.toString())
+                })
 
-        if(document == null)
-            document = {_id: undefined}
-        
-        Student.create({
-            s_name: name,
-            email: email,
-            password: password,
-            image: image,
-            institute: document._id
-        })
+    var s = new Student({
+        s_name: name,
+        email: email,
+        password: password,
+        image: image,
+        institute: (i)? i._id : undefined
+    })
+
+    //saving the student and sending the mail
+    s.save( (err, result) => {
+        if(err)
+        {
+            console.log(err)
+            res.send(err.toString())
+        }
+        else
+        {
+            if(institute){}
+            else
+                institue = "None"
+            
+            var mailoptions = {
+                from: "liolearnitonline@gmail.com",
+                to: email,
+                subject: "Welcome to LIO",
+                text: `Hello ${name}, \n\n\tLIO is an online educational platform to bring students and teachers all over the world together. \n\nYour Registration was successful with the following details: \nName: ${name} \nEmail id: ${email}, \nInstitute: ${institute} \n\nBest Wishes, \nTeam LIO`
+            }
+
+            transporter.sendMail(mailoptions, (err, info) => {
+                if(err)
+                    console.log(err)
+                // else
+                    // console.log(info)
+            })
+        }
     })
 
     res.send("The student is registered")
@@ -51,7 +89,7 @@ async function payment(req, res)
     var payment = {"student": s_id, "course": c_id, "utrid": utrid, "screenshot": screenshot}
 
     var course = await Course.findById(c_id)
-        .select({faculty: 1})
+        .select({faculty: 1, c_name: 1})
         .populate({path: "faculty", select: {"institute": 1}})
         .catch( (err) => {
             console.log(err)
@@ -59,6 +97,27 @@ async function payment(req, res)
 
     var i_id = course.faculty.institute
     var i = await Institute.findByIdAndUpdate(i_id, {$push: {payment: payment}}, {new: true})
+
+    //send mail
+    if(i)
+    {
+        var s = await Student.findById(s_id)
+                .select({email: 1, s_name: 1})
+
+        var mailoptions = {
+            from: "liolearnitonline@gmail.com",
+            to: s.email,
+            subject: "Payment Screenshot uploaded",
+            text: `Hello ${s.s_name}, \n\n\tYour payment screenshot is uploaded. You will get access to the course ${course.c_name} once the institute ${i.i_name} verifies your payment details. \n\nBest Wishes, \nTeam LIO`
+        }
+
+        transporter.sendMail(mailoptions, (err, info) => {
+            if(err)
+                console.log(err)
+            // else
+            //     console.log(info)
+        })
+    }
 
     res.send("Payment screenshot is uploaded")
 }

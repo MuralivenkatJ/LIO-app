@@ -11,6 +11,16 @@ const c_folder = ip + "\\course_images\\"
 const f_folder = ip + "\\faculty_images\\"
 const i_folder = ip + "\\institute_images\\"
 
+//EMAIL
+const nodemailer = require("nodemailer")
+
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "liolearnitonline@gmail.com",
+        pass: "bjsmzsktvkkaqkgn"
+    }
+})
 
 async function unenrolled(req, res)
 {
@@ -81,7 +91,29 @@ async function enroll(req, res)
             console.log(err)
         })
     
-    // console.log(updated)
+    if(updated)
+    {
+        //send mail
+        var s = await Student.findById(req.params.s_id)
+                .select({s_name: 1, email: 1})
+
+        var c = await Course.findById(req.params.c_id)
+                .select({c_name: 1})
+
+        var mailoptions = {
+            from: "liolearnitonline@gmail.com",
+            to: s.email,
+            subject: `Enrolled for the course ${c.c_name}`,
+            text: `Hello ${s.s_name}, \n\n\tCongratulations, You are enrolled for ${c.c_name}. Happy learning. \n\nBest Wishes, \nTeam LIO`
+        }
+
+        transporter.sendMail(mailoptions, (err, info) => {
+            if(err)
+                console.log(err)
+            // else
+            //     console.log(info)
+        })
+    }
 
     res.send("This course has been enrolled")
 }
@@ -118,6 +150,21 @@ function upload(req, res)
                 else{
                     document.courses.push(newDoc._id)
                     document.save()
+
+                    //send mail
+                    var mailoptions = {
+                        from: "liolearnitonline@gmail.com",
+                        to: document.email,
+                        subject: "Course Uploaded",
+                        text: `Hello ${document.f_name}, \n\n\tYour course ${newDoc.c_name} has been uploaded to our website. The details of the course ${newDoc.c_nae} are as follows : \n\nTitle: ${newDoc.c_name} \nSpecialization: ${newDoc.specialization} \nLevel: ${newDoc.level} \nPlaylist Id: ${newDoc.playlistId} \nDescription: ${newDoc.description} \nPrice: ${newDoc.price} \n\nBest Wishes, \nTeam LIO`
+                    }
+
+                    transporter.sendMail(mailoptions, (err, info) => {
+                        if(err)
+                            console.log(err)
+                        // else
+                        //     console.log(info)
+                    })
                 }
             })
         }

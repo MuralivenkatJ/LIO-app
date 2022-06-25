@@ -9,9 +9,43 @@ const course_controller = require("../5_course/controller")
 const fs = require("fs")
 const path = require("path")
 
-async function studentVerification(req, res)
+//EMAIL
+const nodemailer = require("nodemailer")
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: "liolearnitonline@gmail.com",
+        pass: "bjsmzsktvkkaqkgn"
+    }
+})
+
+function studentVerification(req, res)
 {
-    var s = await Student.findByIdAndUpdate(req.params.s_id, {isVerified: true}, {new: true})
+    var s = Student.findByIdAndUpdate(req.params.s_id, {isVerified: true}, {new: true}, async (err, document) => {
+        if(!document)
+            console.log(err)
+        else
+        {
+            var i = await Institute.findById(document.institute)
+
+            //send email
+            var mailoptions = {
+                from: "liolearnitonline@gmail.com",
+                to: document.email,
+                subject: "Institute Verification",
+                text: `Hello ${document.s_name}, \n\n\tYou are verified by your institution ${i.i_name}. Now you can enroll all the courses of ${i.i_name} for free. \n\nBest Wishes, \nTeam LIO`
+            }
+
+            transporter.sendMail(mailoptions, (err, info) => {
+                if(err)
+                    console.log(err)
+                // else
+                //     console.log(info)
+            })
+        }
+    })
+            
 
     res.send("This student is verified")
 }
@@ -19,6 +53,27 @@ async function studentVerification(req, res)
 async function facultyVerification(req, res)
 {
     var f = await Faculty.findByIdAndUpdate(req.params.f_id, {isVerified: true}, {new: true})
+
+    if(f)
+    {
+        var i = await Institute.findById(f.institute)
+                .select({i_name: 1})
+
+        //send mail
+        var mailoptions = {
+            from: "liolearnitonline@gmail.com",
+            to: f.email,
+            subject: "Institute Verification",
+            text: `Hello ${f.f_name}, \n\n\tYou are verified by your institution ${i.i_name}. Now you can upload the courses. \n\nBest Wishes, \nTeam LIO`
+        }
+
+        transporter.sendMail(mailoptions, (err, info) => {
+            if(err)
+                console.log(err)
+            // else
+            //     console.log(info)
+        })
+    }
 
     res.send("This faculty is verified")
 }

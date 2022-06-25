@@ -12,7 +12,7 @@ async function isEnrolled(s_id, c_id)
             console.log(err)
         })
 
-    if(student)
+    if(student != null)
         return true
     return false
 }
