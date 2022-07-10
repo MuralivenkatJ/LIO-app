@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/LIO App/LIO-app/XML Kotlin Frontend/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.148" />
+        <entry key="..\:/LIO App/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/faculty_login.xml" value="0.264" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/approvals_institute.xml" value="0.24010416666666667" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/asgn_and_quiz_faculty.xml" value="0.25416666666666665" />
@@ -12,7 +14,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
