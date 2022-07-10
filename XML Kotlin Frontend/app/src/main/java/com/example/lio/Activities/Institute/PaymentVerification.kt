@@ -7,6 +7,6 @@ import com.example.lio.R
 class PaymentVerification : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.payment_approval)
+        setContentView(R.layout.payment_verification)
     }
 }
