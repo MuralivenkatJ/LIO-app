@@ -33,6 +33,7 @@ class MyCoursesStudent : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
     }
 
+<<<<<<< HEAD
     private fun getMyData() {
         val retrofitBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -62,3 +63,10 @@ class MyCoursesStudent : AppCompatActivity() {
 
 }
 
+=======
+
+
+
+
+}
+>>>>>>> 8d6f81b0e3e77f2c0cb685d2d0ded9f82c8a3e2d
