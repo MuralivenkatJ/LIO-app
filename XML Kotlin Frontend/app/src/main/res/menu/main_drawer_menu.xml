@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/explore"
+            android:title="explore"
+            android:icon="@drawable/explore"/>
+        <item
+            android:id="@+id/my_courses"
+            android:title="my_courses"
+            android:icon="@drawable/my_courses"/>
+        <item
+            android:id="@+id/wishlist"
+            android:title="wishlist"
+            android:icon="@drawable/wishlist"/>
+        <item
+            android:id="@+id/approvals"
+            android:title="approvals"
+            android:icon="@drawable/approvals"/>
+
+    </group>
+
+
+    <group android:checkableBehavior="single">
+        <item android:title="profile">
+
+            <menu>
+                <item
+                    android:id="@+id/login"
+                    android:title="login"
+                    android:icon="@drawable/login"/>
+                <item
+                    android:id="@+id/profile"
+                    android:title="profile"
+                    android:icon="@drawable/profile"/>
+                <item
+                    android:id="@+id/logout"
+                    android:title="logout"
+                    android:icon="@drawable/logout"/>
+            </menu>
+
+        </item>
+    </group>
+
+
+    <item android:title="communicate">
+        <menu>
+            <item
+                android:id="@+id/share"
+                android:title="share"
+                android:icon="@drawable/share"/>
+            <item
+                android:id="@+id/rate"
+                android:title="rate_us"
+                android:icon="@drawable/rate"/>
+        </menu>
+    </item>
+
+</menu>

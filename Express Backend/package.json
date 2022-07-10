@@ -11,7 +11,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon 0_main/app.js"
+    "start": "node 0_main/app.js",
+    "dev": "nodemon 0_main/app.js"
   },
   "author": "Murali venkat J",
   "license": "ISC",

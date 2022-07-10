@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LIO</string>
+    <string name="menu_drawer_open">Drawer open</string>
+    <string name="menu_drawer_close">Drawer close</string>
 </resources>
