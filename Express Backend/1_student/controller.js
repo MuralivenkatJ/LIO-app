@@ -1,4 +1,3 @@
-const mongoose = require("mongoose")
 const Student = require("./model")
 const Course = require("../5_course/model")
 const Institute = require("../3_institute/model")
