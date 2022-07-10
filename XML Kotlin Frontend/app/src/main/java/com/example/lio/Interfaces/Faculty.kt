@@ -24,4 +24,10 @@ interface Faculty {
         @Part("institute") i:RequestBody,
         @Part image: MultipartBody.Part
     ): Call<String>
+
+    @POST("faculty/login")
+    fun login(
+        @Body f: com.example.login.Models.FacultyLogin
+    ): Call<FacultyLoginResponse>
 }
+
