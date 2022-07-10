@@ -15,11 +15,15 @@
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/faculty_register.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/institute_login.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/institute_register.xml" value="0.24010416666666667" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/my_courses_faculty.xml" value="0.22864583333333333" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/payment_approval.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/rating_student.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/student_login.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/unenrolled_course.xml" value="0.25416666666666665" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/upload_assignment.xml" value="0.22864583333333333" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/upload_course.xml" value="0.25416666666666665" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/upload_quiz.xml" value="0.22864583333333333" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/video_player.xml" value="0.22864583333333333" />
       </map>
     </option>
   </component>
