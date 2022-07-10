@@ -9,4 +9,9 @@ class MyCoursesStudent : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.my_courses_student)
     }
+
+
+
+
+
 }

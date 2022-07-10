@@ -10,4 +10,6 @@ class Explore : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.explore)
     }
+
+
 }
