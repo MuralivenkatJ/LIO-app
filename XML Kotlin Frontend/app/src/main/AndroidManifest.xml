@@ -2,6 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lio">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +21,70 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LIO">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.UnenrolledCourse"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Institute.InstituteLogin"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Institute.InstituteRegister"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Faculty.UploadQuiz"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Faculty.UploadAssignment"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Faculty.UploadCourse"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Faculty.FacultyLogin"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Faculty.FacultyRegister"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Student.AssignmentStudent"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Student.QuizStudent"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Student.VideoPlayer"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Student.RatingStudent"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Student.PaymentInfoStudent"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Student.StudentLogin"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Student.StudentRegister"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Institute.PaymentVerification"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Institute.ApprovalsInstitute"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Faculty.AsgnAndQuizFaculty"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Faculty.MyCoursesFaculty"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Student.WishlistStudent"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Student.MyCoursesStudent"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Explore"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
