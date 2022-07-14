@@ -1,6 +1,6 @@
 package com.example.lio.Activities
 
-import android.support.v7.app.AppCompatActivity
+//import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.lio.R
 
@@ -8,6 +8,7 @@ import android.media.Image
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.lio.Interfaces.UnenrollAppInterface
 import com.example.lio.Models.UnenrollDataC
 import com.squareup.picasso.Picasso
@@ -72,16 +73,16 @@ class UnenrolledCourse : AppCompatActivity()
 
                 if (responseBody != null)
                 {
-                    Picasso.with(this@UnenrolledCourse)
-                        .load(responseBody.image)
-                        .into(c_image)
+//                    Picasso.with(this@UnenrolledCourse)
+//                        .load(responseBody.image)
+//                        .into(c_image)
 
                     course_name.setText(responseBody.c_name)
                     desc.setText(responseBody.description)
 
-                    Picasso.with(this@UnenrolledCourse)
-                        .load(responseBody.faculty.image)
-                        .into(f_image)
+//                    Picasso.with(this@UnenrolledCourse)
+//                        .load(responseBody.faculty.image)
+//                        .into(f_image)
 
                     var str = StringBuilder()
                     str.append(responseBody.faculty.f_name)
@@ -89,9 +90,9 @@ class UnenrolledCourse : AppCompatActivity()
                     str.append(responseBody.faculty.qualification)
                     faculty.setText(str)
 
-                    Picasso.with(this@UnenrolledCourse)
-                        .load(responseBody.faculty.institute.image)
-                        .into(i_image)
+//                    Picasso.with(this@UnenrolledCourse)
+//                        .load(responseBody.faculty.institute.image)
+//                        .into(i_image)
                     str.clear()
                     str.append(responseBody.faculty.institute.i_name)
                     str.append(responseBody.faculty.institute.email)

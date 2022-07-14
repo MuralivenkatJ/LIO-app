@@ -1,3 +1,5 @@
 package com.example.lio.Models.Quiz
 
-data class Temp()
+data class Temp(
+    val temp: Int
+)

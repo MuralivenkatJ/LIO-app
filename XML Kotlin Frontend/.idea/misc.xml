@@ -14,18 +14,28 @@
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/assignment_student.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/base_drawer.xml" value="0.264" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/content_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/drawer_header.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/explore.xml" value="0.25416666666666665" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/explore_card1.xml" value="0.25416666666666665" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/explore_card2.xml" value="0.25416666666666665" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/explore_card3.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/faculty_login.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/faculty_register.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/institute_login.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/institute_register.xml" value="0.24010416666666667" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/my_courses_faculty.xml" value="0.22864583333333333" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/my_courses_faculty_card_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/my_courses_student.xml" value="0.25416666666666665" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/my_courses_student_card_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/payment_approval.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/payment_info_student.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/payment_verification.xml" value="0.25416666666666665" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/quiz_student.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/rating_student.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/student_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/student_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/student_wishlist_activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/student_wishlist_card_view.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/unenrolled_course.xml" value="0.25416666666666665" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/upload_assignment.xml" value="0.22864583333333333" />
         <entry key="..\:/apliaction LIO/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/upload_course.xml" value="0.25416666666666665" />

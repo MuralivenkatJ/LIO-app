@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -118,8 +118,9 @@
                     android:backgroundTint="@color/white"
                     android:text="Choose a Image"
                     android:textColor="@color/black"
-                    android:drawableLeft="@drawable/ic_baseline_image_24"
                     android:textSize="20sp" />
+
+<!--                android:drawableLeft="@drawable/ic_baseline_image_24"-->
 
             </RelativeLayout>
 
@@ -133,12 +134,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/ic_baseline_phone_24"
                     android:drawablePadding="20dp"
                     android:hint="phone number"
                     android:padding="20dp"
                     android:textColorHint="@color/black"
                     android:textSize="20sp" />
+
+<!--                android:drawableLeft="@drawable/ic_baseline_phone_24"-->
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -220,4 +222,4 @@
         app:layout_constraintVertical_bias="0.145"
         app:srcCompat="@drawable/user"></ImageView>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

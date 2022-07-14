@@ -1,21 +1,29 @@
 package com.example.lio.Activities.Student
 
-import android.support.v7.app.AppCompatActivity
+//import android.support.v7.app.AppCompatActivity
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
+//import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import com.example.register.Models.GetInstitutes
-import com.example.register.R
-import com.example.register.Services.ServiceBuilder
-import com.example.register.Services.Student
-import com.example.upload_form.Helpers.RealPathUtil
+import androidx.appcompat.app.AppCompatActivity
+import com.example.lio.Helpers.RealPathUtil
+import com.example.lio.Helpers.ServiceBuilder
+import com.example.lio.Interfaces.Faculty
+import com.example.lio.Interfaces.Institute
+import com.example.lio.Interfaces.Student
+import com.example.lio.Models.Institute.GetInstitutes
+//import com.example.register.Models.GetInstitutes
+//import com.example.register.R
+//import com.example.register.Services.ServiceBuilder
+//import com.example.register.Services.Student
+//import com.example.upload_form.Helpers.RealPathUtil
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -80,7 +88,7 @@ class StudentRegister : AppCompatActivity() {
             if (data != null) {
                 image_uri = data.data!!
 
-                val context: Context = this@MainActivity
+                val context: Context = this
                 val realPathObj : RealPathUtil = RealPathUtil()
                 real_path = realPathObj.getPath(this, image_uri).toString()
                 Toast.makeText(this,"image uploaded " + real_path + " |",Toast.LENGTH_SHORT).show()
@@ -210,7 +218,7 @@ class StudentRegister : AppCompatActivity() {
 
         fun getInstitutes()
         {
-            val serviceBuilder = ServiceBuilder.buildService(Student::class.java)
+            val serviceBuilder = ServiceBuilder.buildService(Faculty::class.java)
             val requestCall = serviceBuilder.getInstitutes()
 
             requestCall.enqueue(object : Callback<List<GetInstitutes>> {
@@ -221,7 +229,7 @@ class StudentRegister : AppCompatActivity() {
                         if(response.isSuccessful)
                         {
                             var ins : MutableList<String> = mutableListOf()
-                            for(insti in response.body())
+                            for(insti in response.body()!!)
                                 ins.add(insti.i_name)
                             ins.add("None")
 
@@ -229,7 +237,7 @@ class StudentRegister : AppCompatActivity() {
 
                             //adding institutes to the drop down
                             var spinner = findViewById<Spinner>(R.id.spinner)
-                            val adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_spinner_item, institutes)
+                            val adapter = ArrayAdapter(this@StudentRegister, android.R.layout.simple_spinner_item, institutes)
                             spinner.adapter = adapter
 
                             spinner.onItemSelectedListener = object :
@@ -252,7 +260,7 @@ class StudentRegister : AppCompatActivity() {
 
                 override fun onFailure(call: Call<List<GetInstitutes>>?, t: Throwable?)
                 {
-                    Toast.makeText(this@MainActivity, "Unable to get Institutes", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@StudentRegister, "Unable to get Institutes", Toast.LENGTH_LONG).show()
                 }
 
             })
@@ -299,7 +307,7 @@ class StudentRegister : AppCompatActivity() {
                     {
                         if(response.isSuccessful)
                         {
-                            Toast.makeText(this@MainActivity, response.body().toString(), Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@StudentRegister, response.body().toString(), Toast.LENGTH_LONG).show()
                         }
                     }
                 }
@@ -307,7 +315,7 @@ class StudentRegister : AppCompatActivity() {
                 override fun onFailure(call: Call<String>?, t: Throwable?)
                 {
                     if (t != null) {
-                        Toast.makeText(this@MainActivity, "Failed to register the faculty" + t.message.toString(), Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@StudentRegister, "Failed to register the faculty" + t.message.toString(), Toast.LENGTH_LONG).show()
                     }
                 }
 

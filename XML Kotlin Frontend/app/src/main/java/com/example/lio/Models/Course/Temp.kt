@@ -1,3 +1,5 @@
 package com.example.lio.Models.Course
 
-data class Temp()
+data class Temp(
+    val temp: Int
+)

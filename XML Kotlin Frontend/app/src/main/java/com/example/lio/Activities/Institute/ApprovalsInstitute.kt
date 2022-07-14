@@ -1,7 +1,8 @@
 package com.example.lio.Activities.Institute
 
-import android.support.v7.app.AppCompatActivity
+//import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.lio.R
 
 class ApprovalsInstitute : AppCompatActivity() {

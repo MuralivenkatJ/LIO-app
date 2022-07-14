@@ -1,20 +1,25 @@
 package com.example.lio.Activities.Institute
 
-import android.support.v7.app.AppCompatActivity
+//import android.support.v7.app.AppCompatActivity
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
+//import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import com.example.register.R
-import com.example.register.Services.Institute
-import com.example.register.Services.ServiceBuilder
-import com.example.upload_form.Helpers.RealPathUtil
+import androidx.appcompat.app.AppCompatActivity
+import com.example.lio.Helpers.RealPathUtil
+import com.example.lio.Helpers.ServiceBuilder
+import com.example.lio.Interfaces.Institute
+//import com.example.register.R
+//import com.example.register.Services.Institute
+//import com.example.register.Services.ServiceBuilder
+//import com.example.upload_form.Helpers.RealPathUtil
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -31,7 +36,7 @@ class InstituteRegister : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.institute_register)
 
-   /to choose image from gallery
+   //to choose image from gallery
         var choose_image = findViewById<Button>(R.id.choose_image) as Button
         choose_image.setOnClickListener{
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -77,7 +82,7 @@ class InstituteRegister : AppCompatActivity() {
             if (data != null) {
                 image_uri = data.data!!
 
-                val context: Context = this@MainActivity
+                val context: Context = this
                 val realPathObj : RealPathUtil = RealPathUtil()
                 real_path = realPathObj.getPath(this, image_uri).toString()
                 Toast.makeText(this,"image uploaded " + real_path + " |",Toast.LENGTH_SHORT).show()
@@ -324,7 +329,7 @@ class InstituteRegister : AppCompatActivity() {
                 {
                     if(response.isSuccessful)
                     {
-                        Toast.makeText(this@MainActivity, response.body().toString(), Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@InstituteRegister, response.body().toString(), Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -332,7 +337,7 @@ class InstituteRegister : AppCompatActivity() {
             override fun onFailure(call: Call<String>?, t: Throwable?)
             {
                 if (t != null) {
-                    Toast.makeText(this@MainActivity, "Failed to register the faculty" + t.message.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@InstituteRegister, "Failed to register the faculty" + t.message.toString(), Toast.LENGTH_LONG).show()
                 }
             }
 

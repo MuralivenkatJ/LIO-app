@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -146,12 +146,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/ic_baseline_phone_24"
                     android:drawablePadding="20dp"
                     android:hint="phone number"
                     android:padding="20dp"
                     android:textColorHint="@color/black"
                     android:textSize="20dp" />
+
+<!--                android:drawableLeft="@drawable/ic_baseline_phone_24"-->
             </LinearLayout>
 
             <LinearLayout
@@ -219,4 +220,4 @@
         app:srcCompat="@drawable/user"></ImageView>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

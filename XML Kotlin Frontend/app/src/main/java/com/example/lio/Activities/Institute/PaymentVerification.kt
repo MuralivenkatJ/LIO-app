@@ -32,33 +32,33 @@ class PaymentVerification : androidx.appcompat.app.AppCompatActivity() {
 
 
 
-        var s= Student("62bfcbeb893656b6d7987b76","Manjush V G")
-        var f= Faculty("62bffd0f12847ce8845eca44","Chakrapani D S")
-        var c= Course("62c83fa18fc149e9c9f1fd4f","Node js ",f,899)
-        data= PaymentDetails("62c96b431ae3dd5ae718545e",c,"2022-07-09T11:49:23.603Z","https://learn-it-online.herokuapp.com/payment_screenshots/screenshot_1657367362918.jpg",s,"123456789120")
-
-
-        //elements
-
-
-        var f_name=findViewById<TextView>(R.id.f_name)
-        var c_name=findViewById<TextView>(R.id.c_name)
-        var s_name=findViewById<TextView>(R.id.s_name)
-        var utr=findViewById<TextView>(R.id.utr)
-        var price=findViewById<TextView>(R.id.price)
-        var image=findViewById(R.id.imageView) as ImageView
-        var date=findViewById<TextView>(R.id.date)
-
-        c_name.text=data.course.c_name
-        f_name.text=data.course.faculty.f_name
-        s_name.text=data.student.s_name
-        utr.text=data.utrid
-        price.text=data.course.price.toString()
-        date.text=data.date
-
-        Picasso.with(this)
-            .load(data.screenshot)
-            .into(image)
+//        var s= Student("62bfcbeb893656b6d7987b76","Manjush V G")
+//        var f= Faculty("62bffd0f12847ce8845eca44","Chakrapani D S")
+//        var c= Course("62c83fa18fc149e9c9f1fd4f","Node js ",f,899)
+//        data= PaymentDetails("62c96b431ae3dd5ae718545e",c,"2022-07-09T11:49:23.603Z","https://learn-it-online.herokuapp.com/payment_screenshots/screenshot_1657367362918.jpg",s,"123456789120")
+//
+//
+//        //elements
+//
+//
+//        var f_name=findViewById<TextView>(R.id.f_name)
+//        var c_name=findViewById<TextView>(R.id.c_name)
+//        var s_name=findViewById<TextView>(R.id.s_name)
+//        var utr=findViewById<TextView>(R.id.utr)
+//        var price=findViewById<TextView>(R.id.price)
+//        var image=findViewById(R.id.imageView) as ImageView
+//        var date=findViewById<TextView>(R.id.date)
+//
+//        c_name.text=data.course.c_name
+//        f_name.text=data.course.faculty.f_name
+//        s_name.text=data.student.s_name
+//        utr.text=data.utrid
+//        price.text=data.course.price.toString()
+//        date.text=data.date
+//
+//        Picasso.with(this)
+//            .load(data.screenshot)
+//            .into(image)
 
 
     }

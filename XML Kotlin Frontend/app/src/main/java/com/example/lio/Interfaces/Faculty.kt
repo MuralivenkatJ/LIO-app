@@ -1,6 +1,8 @@
 package com.example.lio.Interfaces
 
-import com.example.facultyregister.Models.GetInstitutes
+import com.example.lio.Models.Institute.GetInstitutes
+import com.example.lio.Models.Login.Login
+import com.example.lio.Models.Login.LoginResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -27,7 +29,7 @@ interface Faculty {
 
     @POST("faculty/login")
     fun login(
-        @Body f: com.example.login.Models.FacultyLogin
-    ): Call<FacultyLoginResponse>
+        @Body f: Login
+    ): Call<LoginResponse>
 }
 

@@ -1,11 +1,12 @@
 package com.example.lio.Activities.Student
 
-import android.support.v7.app.AppCompatActivity
+//import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.RatingBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.lio.Helpers.ServiceBuilder
 import com.example.lio.Interfaces.ratingInterface
 import com.example.lio.R

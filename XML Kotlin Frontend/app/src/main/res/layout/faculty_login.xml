@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-=======
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
->>>>>>> e2ffc45a5cfba7665c0b4c54f83ae53e2784546b
-=======
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
->>>>>>> e2ffc45a5cfba7665c0b4c54f83ae53e2784546b
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,7 +9,6 @@
     tools:context=".Activities.Faculty.FacultyLogin">
 
     <TextView
-<<<<<<< HEAD
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +23,7 @@
         app:layout_constraintVertical_bias="0.096"></TextView>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayout_fl"
         android:layout_width="370dp"
         android:layout_height="375dp"
         android:background="#EFE9E9"
@@ -53,7 +43,7 @@
 
 
             <EditText
-                android:id="@+id/emaliid"
+                android:id="@+id/emaliid_fl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -73,7 +63,7 @@
             app:startIconDrawable="@drawable/ic_baseline_security_24">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password"
+                android:id="@+id/password_fl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -126,7 +116,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageView3_fl"
         android:layout_width="141dp"
         android:layout_height="107dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -137,22 +127,7 @@
         app:layout_constraintVertical_bias="0.235"
         app:srcCompat="@drawable/user1"></ImageView>
 
-
-=======
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Account"
-            android:textColor="#040303"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.553"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.096"/>
-
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="370dp"
             android:layout_height="375dp"
@@ -251,11 +226,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.235"
             app:srcCompat="@drawable/user"/>
-<<<<<<< HEAD
->>>>>>> e2ffc45a5cfba7665c0b4c54f83ae53e2784546b
-=======
->>>>>>> e2ffc45a5cfba7665c0b4c54f83ae53e2784546b
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

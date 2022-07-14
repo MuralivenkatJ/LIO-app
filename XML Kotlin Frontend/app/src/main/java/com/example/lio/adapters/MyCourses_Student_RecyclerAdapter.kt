@@ -12,6 +12,10 @@ import com.example.lio.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.my_courses_student_card_layout.view.*
 
+//import kotlinx.android.synthetic.main.my_courses_student_card_layout.view.*
+//import kotlinx.android.synthetic.main.explore.view.*
+
+
 class MyCourses_Student_RecyclerAdapter(val context: Context, val userList: List<MyCourses_Enrolled>):RecyclerView.Adapter<MyCourses_Student_RecyclerAdapter.ViewHolder>() {
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
                 var itemImage:ImageView

@@ -7,7 +7,6 @@
     tools:context=".Activities.Student.MyCoursesStudent">
 
 
-<<<<<<< HEAD
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -18,11 +17,3 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-=======
-
-</android.support.constraint.ConstraintLayout>
->>>>>>> 8d6f81b0e3e77f2c0cb685d2d0ded9f82c8a3e2d
