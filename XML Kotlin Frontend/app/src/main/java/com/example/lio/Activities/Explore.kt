@@ -1,8 +1,11 @@
 package com.example.lio.Activities
 
 //import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.explore_page.Adapter.Guided_poject
@@ -11,6 +14,7 @@ import com.example.explore_page.Adapter.RecyclerAdapter
 import com.example.explore_page.explore_MyData
 import com.example.lio.Interfaces.explore_Interface
 import com.example.lio.R
+import com.example.lio.databinding.ExploreBinding
 import kotlinx.android.synthetic.main.explore.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,7 +22,10 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Explore : AppCompatActivity() {
+class Explore : BaseDrawer()
+{
+    //for menu bar
+    lateinit var binding : ExploreBinding
 
     var layoutManager: RecyclerView.LayoutManager? = null
     var layoutManager1: RecyclerView.LayoutManager? = null
@@ -29,7 +36,12 @@ class Explore : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.explore)
+
+        //for menu bar
+        binding = ExploreBinding.inflate(layoutInflater)
+        allocateActivityTitle("Explore")
+        setContentView(binding.root)
+        //for menu bar
 
         getMyData()
         layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
@@ -40,6 +52,12 @@ class Explore : AppCompatActivity() {
 
         layoutManager2 = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         recycler_View3.layoutManager=layoutManager2
+    }
+
+    fun unenrolled(v: View?)
+    {
+        var i = Intent(this, UnenrolledCourse::class.java)
+        startActivity(i)
     }
 
     private fun getMyData() {

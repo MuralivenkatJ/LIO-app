@@ -10,10 +10,12 @@ import android.os.Environment
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lio.Activities.BaseDrawer
 import com.example.lio.Helpers.RealPathUtil
 import com.example.lio.Helpers.ServiceBuilder
 import com.example.lio.Interfaces.CourseInterface
 import com.example.lio.R
+import com.example.lio.databinding.UploadCourseBinding
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -21,7 +23,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
-class UploadCourse : AppCompatActivity() {
+class UploadCourse : BaseDrawer()
+{
+
+    //for menu bar
+    lateinit var binding: UploadCourseBinding
 
         lateinit var title : EditText
         lateinit var choose_image : Button
@@ -37,9 +43,15 @@ class UploadCourse : AppCompatActivity() {
         lateinit var filePath : String
         lateinit var real_path : String
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
+
+        //for menu bar
+        binding = UploadCourseBinding.inflate(layoutInflater)
+        allocateActivityTitle("Upload Course")
         setContentView(R.layout.upload_course)
+        //for menu bar
 
             title = findViewById(R.id.title1) as EditText
             choose_image = findViewById(R.id.choose_image) as Button

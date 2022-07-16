@@ -21,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LIO">
         <activity
+            android:name=".Activities.SelectLogin"
+            android:exported="false" />
+        <activity
             android:name=".Activities.BaseDrawer"
             android:exported="false" />
         <activity

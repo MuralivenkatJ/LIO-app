@@ -98,16 +98,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:onClick="register"
             android:paddingTop="30px"
             android:text="don't have account?"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingTop="30px"
-            android:text="create account"
             android:textColor="@color/black" />
 
     </LinearLayout>

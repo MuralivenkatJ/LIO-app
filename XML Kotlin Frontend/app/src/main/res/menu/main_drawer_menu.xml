@@ -5,39 +5,39 @@
 
         <item
             android:id="@+id/explore"
-            android:title="explore"
+            android:title="@string/explore"
             android:icon="@drawable/explore"/>
         <item
             android:id="@+id/my_courses"
-            android:title="my_courses"
+            android:title="@string/my_courses"
             android:icon="@drawable/my_courses"/>
         <item
             android:id="@+id/wishlist"
-            android:title="wishlist"
+            android:title="@string/wishlist"
             android:icon="@drawable/wishlist"/>
         <item
             android:id="@+id/approvals"
-            android:title="approvals"
+            android:title="@string/approvals"
             android:icon="@drawable/approvals"/>
 
     </group>
 
 
     <group android:checkableBehavior="single">
-        <item android:title="profile">
+        <item android:title="@string/profile">
 
             <menu>
                 <item
                     android:id="@+id/login"
-                    android:title="login"
+                    android:title="@string/login"
                     android:icon="@drawable/login"/>
                 <item
                     android:id="@+id/profile"
-                    android:title="profile"
+                    android:title="@string/profile"
                     android:icon="@drawable/profile"/>
                 <item
                     android:id="@+id/logout"
-                    android:title="logout"
+                    android:title="@string/logout"
                     android:icon="@drawable/logout"/>
             </menu>
 
@@ -45,15 +45,15 @@
     </group>
 
 
-    <item android:title="communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                 android:id="@+id/share"
-                android:title="share"
+                android:title="@string/share"
                 android:icon="@drawable/share"/>
             <item
                 android:id="@+id/rate"
-                android:title="rate_us"
+                android:title="@string/rate_us"
                 android:icon="@drawable/rate"/>
         </menu>
     </item>

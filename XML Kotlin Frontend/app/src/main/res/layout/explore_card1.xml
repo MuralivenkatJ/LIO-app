@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="250dp"
-    app:cardElevation="10dp"
-    app:cardCornerRadius="12dp"
     android:layout_margin="10dp"
+    android:onClick="unenrolled"
     app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="10dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
     tools:context=".Activities.explore.explore_MainActivity">
@@ -32,7 +33,7 @@
         android:id="@+id/c_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
 
 </androidx.cardview.widget.CardView>

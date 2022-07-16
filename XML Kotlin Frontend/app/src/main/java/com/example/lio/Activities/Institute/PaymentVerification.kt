@@ -22,11 +22,13 @@ import retrofit2.Response
 const val BASE_URL="https://learn-it-online.herokuapp.com/"
 
 
-class PaymentVerification : androidx.appcompat.app.AppCompatActivity() {
+class PaymentVerification : androidx.appcompat.app.AppCompatActivity()
+{
 
     lateinit var data : PaymentDetails
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.payment_verification)
 
