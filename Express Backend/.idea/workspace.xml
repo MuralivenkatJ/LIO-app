@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13b93732-2f7c-4860-aa3d-82ed4c0dfda1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../XML Kotlin Frontend/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../XML Kotlin Frontend/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../XML Kotlin Frontend/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../XML Kotlin Frontend/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../XML Kotlin Frontend/app/src/main/res/layout/my_courses_student.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../XML Kotlin Frontend/app/src/main/res/layout/my_courses_student.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +26,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../XML Kotlin Frontend" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
