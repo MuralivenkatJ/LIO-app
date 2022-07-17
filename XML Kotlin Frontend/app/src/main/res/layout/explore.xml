@@ -11,146 +11,69 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/text3"
+            android:id="@+id/text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="392dp"
-            android:text="Recycler View"
+            android:layout_marginTop="20dp"
+            android:text="Most Viewed"
             android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/recycler_View2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.006"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_View1"
             android:layout_width="406dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="184dp"
-            android:layout_marginBottom="14dp"
-            app:layout_constraintBottom_toTopOf="@+id/text3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/image1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:adjustViewBounds="true"
-            android:gravity="center"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@+id/text1" />
 
         <TextView
-            android:id="@+id/text1"
+            android:id="@+id/text3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="144dp"
-            android:text="Most Viewed"
+            android:layout_marginTop="30dp"
+            android:text="Recently Launched"
             android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/recycler_View1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.006"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="94dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="68dp"
-            android:layout_marginBottom="26dp"
-            android:layout_weight="1"
-            android:text="Unix"
-            app:layout_constraintBottom_toTopOf="@+id/text1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="101dp"
-            android:layout_height="47dp"
-            android:layout_margin="5dp"
-            android:text="Explore"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.216"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-
-            android:id="@+id/row_wallet_redeem_img2"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:adjustViewBounds="true"
-            android:gravity="center"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.733"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/recycler_View1" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_View2"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="436dp"
-            android:layout_marginBottom="26dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_View3"
-            android:layout_width="409dp"
-            android:layout_height="wrap_content"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.6"
+            app:layout_constraintTop_toBottomOf="@+id/text3"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
+            android:layout_marginTop="30dp"
             android:text="Guided Projects"
             android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/recycler_View2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_View3"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:ignore="MissingConstraints" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

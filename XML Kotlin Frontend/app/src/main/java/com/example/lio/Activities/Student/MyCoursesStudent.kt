@@ -36,7 +36,7 @@ class MyCoursesStudent : BaseDrawer()
     var accessToken: String? = null
 
     lateinit var layoutManager: RecyclerView.LayoutManager
-    lateinit var adapter: RecyclerView.Adapter<MyCourses_Student_RecyclerAdapter.ViewHolder>
+//    lateinit var adapter: RecyclerView.Adapter<MyCourses_Student_RecyclerAdapter.ViewHolder>
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -94,8 +94,27 @@ class MyCoursesStudent : BaseDrawer()
             override fun onResponse(call: Call<MyStudentData>, response: Response<MyStudentData>?)
             {
                 val responseBody = response?.body()!!
-                adapter = MyCourses_Student_RecyclerAdapter(baseContext, response.body()!!.enrolled)
+                var adapter = MyCourses_Student_RecyclerAdapter(baseContext, response.body()!!.enrolled)
                 recyclerView.adapter = adapter
+
+                adapter.setOnCourseClickListener(object: MyCourses_Student_RecyclerAdapter.OnCourseClickListener
+                {
+                    override fun onCourseClick(position: Int)
+                    {
+                        var c_id = responseBody.enrolled[position].course._id
+
+                        Toast.makeText(this@MyCoursesStudent, c_id, Toast.LENGTH_LONG).show()
+
+                        var i = Intent(this@MyCoursesStudent, VideoPlayer::class.java)
+                        i.putExtra("accessToken", accessToken)
+                        if(c_id == null)
+                            i.putExtra("c_id", "")
+                        else
+                            i.putExtra("c_id", c_id)
+                        startActivity(i)
+                    }
+
+                })
 
             }
 
@@ -107,14 +126,6 @@ class MyCoursesStudent : BaseDrawer()
         })
 
 
-    }
-
-
-    fun goToPlayerPage(v: View?)
-    {
-        var i = Intent(this, VideoPlayer::class.java)
-        i.putExtra("accessToken", accessToken)
-        startActivity(i)
     }
 
 }

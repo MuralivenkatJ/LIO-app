@@ -14,7 +14,21 @@ import kotlinx.android.synthetic.main.explore_card2.view.*
 
 class Recently_Launched(val context: Context,val userList1: List<explore_MostViewed>):RecyclerView.Adapter<Recently_Launched.ViewHolder>()
 {
-    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    //for listener
+    lateinit var courseListener: OnCourseClickListener
+
+    interface OnCourseClickListener
+    {
+        fun onCourseClick(position: Int)
+    }
+
+    fun setOnCourseClickListener(listener: OnCourseClickListener)
+    {
+        courseListener = listener
+    }
+    //for listener
+
+    class ViewHolder(itemView: View, listener: OnCourseClickListener):RecyclerView.ViewHolder(itemView)
     {
         var itemImage2:ImageView
         var itemC_name: TextView
@@ -32,11 +46,16 @@ class Recently_Launched(val context: Context,val userList1: List<explore_MostVie
             itemCorse_id=itemView.course_id
             itemDuration=itemView.durtion
 
+            //for listener
+            itemView.setOnClickListener {
+                listener.onCourseClick(adapterPosition)
+            }
+
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v=LayoutInflater.from(parent.context).inflate(R.layout.explore_card2,parent,false)
-        return ViewHolder(v)
+        return ViewHolder(v, courseListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)

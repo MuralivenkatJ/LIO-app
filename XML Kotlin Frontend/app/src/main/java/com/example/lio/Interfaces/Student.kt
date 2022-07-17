@@ -32,8 +32,9 @@ interface Student {
     ): Call<String>
 
 
-    @GET("/course/enrolled/62c04ce0233544a84d46714e")
+    @GET("/course/enrolled/{c_id}")
     fun getVideos(
-        @Header("Authorization") auth: String
+        @Header("Authorization") auth: String,
+        @Path("c_id") c_id: String
     ):Call<List<PlaylistVideos>>
 }

@@ -14,7 +14,21 @@ import kotlinx.android.synthetic.main.video_player_card.view.*
 
 class YouTubePlayerAdapter(val context: Context, val userList1: List<PlaylistVideos>): RecyclerView.Adapter<YouTubePlayerAdapter.ViewHolder>()
 {
-    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    //for listener
+    lateinit var videoListener: onVideoClickListener
+
+    interface onVideoClickListener
+    {
+        fun onVideoClick(position: Int)
+    }
+
+    fun setOnVideoClickListener(listener: onVideoClickListener)
+    {
+        videoListener = listener
+    }
+    //for listener
+
+    class ViewHolder(itemView: View, listener: onVideoClickListener):RecyclerView.ViewHolder(itemView)
     {
         var itemImage1: ImageView
         var itemDuration: TextView
@@ -26,12 +40,16 @@ class YouTubePlayerAdapter(val context: Context, val userList1: List<PlaylistVid
             itemCourse=itemView.v_title
             itemDiscription=itemView.v_description
 
+            //for listener
+            itemView.setOnClickListener {
+                listener.onVideoClick(adapterPosition)
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
         val v= LayoutInflater.from(parent.context).inflate(R.layout.video_player_card,parent,false)
-        return ViewHolder(v)
+        return ViewHolder(v, videoListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)

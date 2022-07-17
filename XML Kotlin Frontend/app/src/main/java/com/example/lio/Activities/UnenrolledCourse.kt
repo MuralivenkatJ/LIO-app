@@ -1,6 +1,8 @@
 package com.example.lio.Activities
 
 //import android.support.v7.app.AppCompatActivity
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import com.example.lio.R
 
@@ -8,6 +10,7 @@ import android.media.Image
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lio.Interfaces.UnenrollAppInterface
 import com.example.lio.Models.UnenrollDataC
@@ -36,7 +39,8 @@ class UnenrolledCourse : AppCompatActivity()
 
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.unenrolled_course)
 
@@ -61,7 +65,17 @@ class UnenrolledCourse : AppCompatActivity()
             .build()
             .create(UnenrollAppInterface::class.java)
 
-        val retrofitData=retrofitBuilder.getData()
+        //getting the course id
+        var i = intent
+        var c_id = i.getStringExtra("c_id")
+        if(c_id == null || c_id == "")
+        {
+            Toast.makeText(this, "Something went wrong try again", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, Explore::class.java))
+            return
+        }
+
+        val retrofitData=retrofitBuilder.getData(c_id)
 
         retrofitData.enqueue(object : Callback<UnenrollDataC?>
         {
@@ -85,19 +99,19 @@ class UnenrolledCourse : AppCompatActivity()
                         .into(f_image)
 
                     var str = StringBuilder()
-                    str.append(responseBody.faculty.f_name)
-                    str.append(responseBody.faculty.email)
-                    str.append(responseBody.faculty.qualification)
+                    str.append(responseBody.faculty.f_name + "\n")
+                    str.append(responseBody.faculty.email + "\n")
+                    str.append(responseBody.faculty.qualification + "\n")
                     faculty.setText(str)
 
                     Picasso.get()
                         .load(responseBody.faculty.institute.image)
                         .into(i_image)
                     str.clear()
-                    str.append(responseBody.faculty.institute.i_name)
-                    str.append(responseBody.faculty.institute.email)
-                    str.append(responseBody.faculty.institute.website)
-                    i_name.setText(responseBody.faculty.institute.toString())
+                    str.append(responseBody.faculty.institute.i_name + "\n")
+                    str.append(responseBody.faculty.institute.email + "\n")
+                    str.append(responseBody.faculty.institute.website + "\n")
+                    i_name.setText(str)
 
                     str.clear()
                     for(skill in responseBody.skills)
@@ -120,5 +134,14 @@ class UnenrolledCourse : AppCompatActivity()
     }
 
 
+    fun enroll(v: View?)
+    {
+
+    }
+
+    fun addToWishlist(v: View?)
+    {
+
+    }
 
 }

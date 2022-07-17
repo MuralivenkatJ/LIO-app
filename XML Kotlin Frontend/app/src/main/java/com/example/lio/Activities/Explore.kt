@@ -33,9 +33,9 @@ class Explore : BaseDrawer()
     var layoutManager: RecyclerView.LayoutManager? = null
     var layoutManager1: RecyclerView.LayoutManager? = null
     var layoutManager2: RecyclerView.LayoutManager? = null
-    var adapter1: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
-    var adapter2: RecyclerView.Adapter<Recently_Launched.ViewHolder>? = null
-    var adapter3: RecyclerView.Adapter<Guided_poject.ViewHolder>? = null
+//    var adapter1: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+//    var adapter2: RecyclerView.Adapter<Recently_Launched.ViewHolder>? = null
+//    var adapter3: RecyclerView.Adapter<Guided_poject.ViewHolder>? = null
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -121,18 +121,60 @@ class Explore : BaseDrawer()
             override fun onResponse(call: Call<explore_MyData?>, response: Response<explore_MyData?>)
             {
                 val responseBody = response.body()!!
-                adapter1 = RecyclerAdapter(baseContext, responseBody.most_viewed)
+                var adapter1 = RecyclerAdapter(baseContext, responseBody.most_viewed)
+                var adapter2= Recently_Launched(baseContext,responseBody.recently_launched)
+                var adapter3= Guided_poject(baseContext,responseBody.guided_project)
+
+
                 recycler_View1.adapter = adapter1
-
-                adapter2= Recently_Launched(baseContext,responseBody.recently_launched)
                 recycler_View2.adapter=adapter2
-
-                adapter3= Guided_poject(baseContext,responseBody.guided_project)
                 recycler_View3.adapter=adapter3
 
+                //listeners
+                adapter1.setOnCourseClickListener(object: RecyclerAdapter.OnCourseClickListener
+                {
+                    override fun onCourseClick(position: Int)
+                    {
+                        var c_id = responseBody.most_viewed[position]._id
 
+                        Toast.makeText(this@Explore, c_id, Toast.LENGTH_LONG).show()
 
+                        var i = Intent(this@Explore, UnenrolledCourse::class.java)
+                        i.putExtra("c_id", c_id)
+                        startActivity(i)
+                    }
 
+                })
+
+                adapter2.setOnCourseClickListener(object: Recently_Launched.OnCourseClickListener
+                {
+                    override fun onCourseClick(position: Int)
+                    {
+                        var c_id = responseBody.recently_launched[position]._id
+
+                        Toast.makeText(this@Explore, c_id, Toast.LENGTH_LONG).show()
+
+                        var i = Intent(this@Explore, UnenrolledCourse::class.java)
+                        i.putExtra("c_id", c_id)
+                        startActivity(i)
+                    }
+
+                })
+
+                adapter3.setOnCourseClickListener(object: Guided_poject.OnCourseClickListener
+                {
+                    override fun onCourseClick(position: Int)
+                    {
+                        var c_id = responseBody.guided_project[position]._id
+
+                        Toast.makeText(this@Explore, c_id, Toast.LENGTH_LONG).show()
+
+                        var i = Intent(this@Explore, UnenrolledCourse::class.java)
+                        i.putExtra("c_id", c_id)
+                        startActivity(i)
+                    }
+
+                })
             }
 
             override fun onFailure(call: Call<explore_MyData?>, t: Throwable) {

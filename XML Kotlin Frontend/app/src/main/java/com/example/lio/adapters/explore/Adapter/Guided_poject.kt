@@ -13,7 +13,21 @@ import kotlinx.android.synthetic.main.explore_card3.view.*
 
 class Guided_poject(val context: Context,val userList1: List<explore_MostViewed>):RecyclerView.Adapter<Guided_poject.ViewHolder>()
 {
-    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    //for listener
+    lateinit var courseListener: OnCourseClickListener
+
+    interface OnCourseClickListener
+    {
+        fun onCourseClick(position: Int)
+    }
+
+    fun setOnCourseClickListener(listener: OnCourseClickListener)
+    {
+        courseListener = listener
+    }
+    //for listener
+
+    class ViewHolder(itemView: View, listener: OnCourseClickListener):RecyclerView.ViewHolder(itemView)
     {
         var itemImage3:ImageView
         var itemC_name: TextView
@@ -31,12 +45,17 @@ class Guided_poject(val context: Context,val userList1: List<explore_MostViewed>
             itemCorse_id=itemView.course_id
             itemDuration=itemView.durtion
 
+            //for listener
+            itemView.setOnClickListener {
+                listener.onCourseClick(adapterPosition)
+            }
+
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
         val v=LayoutInflater.from(parent.context).inflate(R.layout.explore_card3,parent,false)
-        return ViewHolder(v)
+        return ViewHolder(v, courseListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)

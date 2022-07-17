@@ -1,11 +1,14 @@
 package com.example.lio.Activities.Student
 
 //import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lio.Activities.Explore
 import com.example.lio.Interfaces.Student
 import com.example.lio.Models.Student.PlaylistVideos
 import com.example.lio.R
@@ -25,7 +28,10 @@ class VideoPlayer : YouTubeBaseActivity()
 {
     var layoutManager: RecyclerView.LayoutManager? = null
     val api_key = "AIzaSyDLVcpT3Zd4GId6R29hCXrCVaQOPfzAMSs"
-    var adapter1: RecyclerView.Adapter<YouTubePlayerAdapter.ViewHolder>? = null
+//    var adapter1: RecyclerView.Adapter<YouTubePlayerAdapter.ViewHolder>? = null
+
+    //YouTube Player
+    lateinit var YTPlayer : YouTubePlayer
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -38,8 +44,8 @@ class VideoPlayer : YouTubeBaseActivity()
 
             override fun onInitializationSuccess(provider: YouTubePlayer.Provider?, player: YouTubePlayer?, p2: Boolean)
             {
-                player?.loadVideo("HzeK7g8cD0Y")
-                player?.play()
+                YTPlayer = player!!
+                YTPlayer.loadVideo("HzeK7g8cD0Y")
             }
 
             override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?)
@@ -66,16 +72,38 @@ class VideoPlayer : YouTubeBaseActivity()
         //getting accessToken
         var i = intent
         var accessToken = i.getStringExtra("accessToken")
+        var c_id = i.getStringExtra("c_id")
+        if(c_id == null || c_id == "")
+        {
+            Toast.makeText(this, "Something went wrong try again", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, Explore::class.java))
+            return
+        }
 
-        val retrofitData = retrofitBuilder.getVideos("Bearer " + accessToken)
+        val retrofitData = retrofitBuilder.getVideos("Bearer " + accessToken, c_id)
 
         retrofitData.enqueue(object : Callback<List<PlaylistVideos>?>
         {
             override fun onResponse(call: Call<List<PlaylistVideos>?>, response: Response<List<PlaylistVideos>?>)
             {
                 val responseBody = response.body()!!
-                adapter1 = YouTubePlayerAdapter(baseContext, responseBody)
+                var adapter1 = YouTubePlayerAdapter(baseContext, responseBody)
                 recycler_View.adapter = adapter1
+
+                //for listener
+                adapter1.setOnVideoClickListener(object : YouTubePlayerAdapter.onVideoClickListener
+                {
+                    override fun onVideoClick(position: Int)
+                    {
+                        YTPlayer.loadVideo(responseBody[position].videoId)
+
+                        findViewById<TextView>(R.id.title).setText(responseBody[position].title)
+                        findViewById<TextView>(R.id.desc).setText(responseBody[position].description)
+
+                        YTPlayer.play()
+                    }
+
+                })
             }
 
             override fun onFailure(call: Call<List<PlaylistVideos>?>, t: Throwable)
