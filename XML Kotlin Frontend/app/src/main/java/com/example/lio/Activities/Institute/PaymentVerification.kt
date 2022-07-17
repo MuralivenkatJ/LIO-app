@@ -11,8 +11,6 @@ import android.view.View
 import android.widget.Toast
 import com.example.lio.Helpers.ServiceBuilder
 import com.example.lio.Interfaces.Papprovalinterface
-import com.example.paymentform.Models.Course
-import com.example.paymentform.Models.Faculty
 import com.example.paymentform.Models.PaymentDetails
 import com.example.paymentform.Models.Student
 import retrofit2.Call

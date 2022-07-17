@@ -2,8 +2,10 @@ package com.example.lio.Activities
 
 //import android.support.v7.app.AppCompatActivity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +17,7 @@ import com.example.explore_page.explore_MyData
 import com.example.lio.Interfaces.explore_Interface
 import com.example.lio.R
 import com.example.lio.databinding.ExploreBinding
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.explore.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,7 +37,8 @@ class Explore : BaseDrawer()
     var adapter2: RecyclerView.Adapter<Recently_Launched.ViewHolder>? = null
     var adapter3: RecyclerView.Adapter<Guided_poject.ViewHolder>? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
 
         //for menu bar
@@ -42,6 +46,25 @@ class Explore : BaseDrawer()
         allocateActivityTitle("Explore")
         setContentView(binding.root)
         //for menu bar
+
+        //checking if logged in
+        var shrdPref: SharedPreferences = getSharedPreferences("login_credentials", MODE_PRIVATE)
+        var loggedInAs = shrdPref.getString("loggedInAs", "None")
+        var accessToken = shrdPref.getString("accessToken", "Empty")
+
+        Toast.makeText(this, loggedInAs, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, accessToken, Toast.LENGTH_LONG).show()
+
+        var navigationView = findViewById(R.id.nav_view) as NavigationView
+        var menu: Menu = navigationView.menu
+
+//        if(loggedInAs == "None")
+//        {
+//            menu.findItem(R.id.my_courses).setVisible(false)
+//            menu.findItem(R.id.logout).setVisible(false)
+//
+//        }
+        //checking if logged in
 
         getMyData()
         layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
@@ -60,7 +83,8 @@ class Explore : BaseDrawer()
         startActivity(i)
     }
 
-    private fun getMyData() {
+    private fun getMyData()
+    {
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(com.example.lio.Activities.explore.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -68,8 +92,10 @@ class Explore : BaseDrawer()
             .create(explore_Interface::class.java)
 
         val retrofitData = retrofitBuilder.getData()
-        retrofitData.enqueue(object : Callback<explore_MyData?> {
-            override fun onResponse(call: Call<explore_MyData?>, response: Response<explore_MyData?>) {
+        retrofitData.enqueue(object : Callback<explore_MyData?>
+        {
+            override fun onResponse(call: Call<explore_MyData?>, response: Response<explore_MyData?>)
+            {
                 val responseBody = response.body()!!
                 adapter1 = RecyclerAdapter(baseContext, responseBody.most_viewed)
                 recycler_View1.adapter = adapter1

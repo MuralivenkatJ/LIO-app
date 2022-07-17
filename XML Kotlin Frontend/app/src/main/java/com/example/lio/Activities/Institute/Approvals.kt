@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lio.Activities.BaseDrawer
 import com.example.lio.Interfaces.Approvals
 import com.example.lio.Models.Institute.myData_Approvals
 import com.example.lio.R
 import com.example.lio.adapters.approvalAdapter
+import com.example.lio.databinding.ApprovalsInstituteBinding
 import kotlinx.android.synthetic.main.approvals_institute.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,13 +17,23 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Approvals : AppCompatActivity() {
+class Approvals : BaseDrawer()
+{
+    //for menu bar
+    lateinit var binding: ApprovalsInstituteBinding
+
     var layoutManager: RecyclerView.LayoutManager? = null
     var adapter: RecyclerView.Adapter<approvalAdapter.ViewHolder>? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.approvals_institute)
+
+        //for menu bar
+        binding = ApprovalsInstituteBinding.inflate(layoutInflater)
+        allocateActivityTitle("Approvals")
+        setContentView(binding.root)
+        //for menu bar
 
         getMyData()
 

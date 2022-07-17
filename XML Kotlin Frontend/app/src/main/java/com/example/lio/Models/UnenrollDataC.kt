@@ -1,7 +1,7 @@
 package com.example.lio.Models
 
 import com.example.lio.Models.Student.Review
-import com.example.paymentform.Models.Faculty
+import com.example.lio.Models.Faculty.Faculty
 
 data class UnenrollDataC(
 

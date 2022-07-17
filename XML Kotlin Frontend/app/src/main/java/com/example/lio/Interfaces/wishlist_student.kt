@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 
 interface wishlist_student {
-    @Headers("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzX2lkIjoiNjJiZmRlY2M1NDgxYjNhNTk2MWVjMzY4IiwiaWF0IjoxNjU3MTU0Nzg1LCJleHAiOjE2NTc1ODY3ODV9.JhnU-2L_xd0bsuVWpq86koo4fuh8MNj_PC0oXJHfAC0")
+    @Headers("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzX2lkIjoiNjJiZmRlY2M1NDgxYjNhNTk2MWVjMzY4IiwiaWF0IjoxNjU4MDE1NzQ5LCJleHAiOjE2NTg0NDc3NDl9.UQ-qbUKQGW6_tFIOavvrjvCCwUHM3BO7R_o0fXU0dyA")
     @GET("student/wishList")
     fun getData(): Call<wishList_MyData>
 }

@@ -75,7 +75,7 @@
             android:name=".Activities.Institute.PaymentVerification"
             android:exported="false" />
         <activity
-            android:name=".Activities.Institute.ApprovalsInstitute"
+            android:name=".Activities.Institute.Approvals"
             android:exported="false" />
         <activity
             android:name=".Activities.Faculty.AsgnAndQuizFaculty"

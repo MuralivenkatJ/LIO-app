@@ -10,9 +10,11 @@ import retrofit2.http.*
 interface Institute {
 
 
+    @FormUrlEncoded
     @POST("institute/login")
     fun instituteLogin(
-        @Body f:Login
+        @Field("email") email: String,
+        @Field("password") password: String
     ): Call<LoginResponse>
    
     @Multipart

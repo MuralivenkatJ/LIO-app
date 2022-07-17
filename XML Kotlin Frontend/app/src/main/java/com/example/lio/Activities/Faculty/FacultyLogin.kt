@@ -2,12 +2,14 @@ package com.example.lio.Activities.Faculty
 
 //import android.support.v7.app.AppCompatActivity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lio.Activities.Explore
 import com.example.lio.Helpers.ServiceBuilder
 import com.example.lio.Interfaces.Faculty
 import com.example.lio.Models.Login.Login
@@ -25,7 +27,8 @@ import com.example.lio.R
 class FacultyLogin : AppCompatActivity()
 {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.faculty_login)
     }
@@ -39,35 +42,37 @@ class FacultyLogin : AppCompatActivity()
     fun login(v: View?)
     {
 
-        var email = findViewById<EditText>(R.id.emaliid).toString()
-        var password = findViewById<EditText>(R.id.password).toString()
-
-        var f_l = Login(email, password)
+        var email = findViewById<EditText>(R.id.emaliid).text.toString()
+        var password = findViewById<EditText>(R.id.password).text.toString()
 
         var serviceBuilderr = ServiceBuilder.buildService(Faculty::class.java)
-        var requestCall = serviceBuilderr.login(f_l)
+        var requestCall = serviceBuilderr.login(email, password)
 
-        requestCall.enqueue(object: Callback<LoginResponse>{
+        requestCall.enqueue(object: Callback<LoginResponse>
+        {
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?)
             {
-                if (response != null)
+                if(response != null)
                 {
-                    if(response.isSuccessful)
-                    {
-                        var test = findViewById<TextView>(R.id.test)
-                        test.setText(response.body()!!.accessToken.toString())
-                        Toast.makeText(this@FacultyLogin, response.body()!!.accessToken, Toast.LENGTH_LONG).show()
-                    }
-                    else
-                        Toast.makeText(this@FacultyLogin, "response is not successful", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@FacultyLogin, response.body()!!.msg, Toast.LENGTH_LONG).show()
+
+                    //shared preferences
+                    var shrdPref : SharedPreferences = getSharedPreferences("login_credentials", MODE_PRIVATE)
+                    var editor: SharedPreferences.Editor = shrdPref.edit()
+
+                    editor.putString("loggedInAs", "faculty")
+                    editor.putString("accessToken", response.body()!!.accessToken)
+
+                    editor.apply()
+                    //shared preferences
+
+                    //going back to explore page
+                    startActivity(Intent(this@FacultyLogin, Explore::class.java))
                 }
-                else
-                    Toast.makeText(this@FacultyLogin, "null response", Toast.LENGTH_LONG).show()
             }
 
-            override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
-                var test = findViewById<TextView>(R.id.test)
-                test.setText("Failed to get response")
+            override fun onFailure(call: Call<LoginResponse>?, t: Throwable?)
+            {
                 Toast.makeText(this@FacultyLogin, "failed", Toast.LENGTH_LONG).show()
             }
 

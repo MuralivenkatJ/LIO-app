@@ -27,9 +27,11 @@ interface Faculty {
         @Part image: MultipartBody.Part
     ): Call<String>
 
+    @FormUrlEncoded
     @POST("faculty/login")
     fun login(
-        @Body f: Login
+        @Field("email") email: String,
+        @Field("password") password: String
     ): Call<LoginResponse>
 }
 

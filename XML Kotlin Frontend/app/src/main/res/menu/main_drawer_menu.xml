@@ -16,6 +16,10 @@
             android:title="@string/wishlist"
             android:icon="@drawable/wishlist"/>
         <item
+            android:id="@+id/my_courses_f"
+            android:title="@string/my_courses"
+            android:icon="@drawable/my_courses"/>
+        <item
             android:id="@+id/approvals"
             android:title="@string/approvals"
             android:icon="@drawable/approvals"/>

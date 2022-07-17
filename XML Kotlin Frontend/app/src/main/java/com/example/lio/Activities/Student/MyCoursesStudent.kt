@@ -40,13 +40,15 @@ class MyCoursesStudent : BaseDrawer()
         setContentView(binding.root)
         //for menu bar
 
-        getMyData()
 
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
+
+        getMyData()
     }
 
-    private fun getMyData() {
+    private fun getMyData()
+    {
         val retrofitBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
@@ -55,15 +57,18 @@ class MyCoursesStudent : BaseDrawer()
 
         val retrofitData = retrofitBuilder.getData()
 
-        retrofitData.enqueue(object : Callback<MyStudentData> {
-            override fun onResponse(call: Call<MyStudentData>, response: Response<MyStudentData>) {
-                val responseBody = response.body()!!
-                adapter = MyCourses_Student_RecyclerAdapter(baseContext, responseBody.myCoursesEnrolled)
+        retrofitData.enqueue(object : Callback<MyStudentData>
+        {
+            override fun onResponse(call: Call<MyStudentData>, response: Response<MyStudentData>?)
+            {
+                val responseBody = response?.body()!!
+                adapter = MyCourses_Student_RecyclerAdapter(baseContext, response.body()!!.myCoursesEnrolled)
                 recyclerView.adapter = adapter
 
             }
 
-            override fun onFailure(call: Call<MyStudentData>, t: Throwable) {
+            override fun onFailure(call: Call<MyStudentData>, t: Throwable)
+            {
 
             }
 
@@ -71,6 +76,5 @@ class MyCoursesStudent : BaseDrawer()
 
 
     }
-
 
 }
