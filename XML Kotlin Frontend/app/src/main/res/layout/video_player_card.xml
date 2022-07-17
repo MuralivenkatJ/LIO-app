@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="12dp"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <ImageView
+        android:id="@+id/v_thumbnail"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:adjustViewBounds="true"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.003"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/v_comp_icon"
+        android:layout_width="20dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="155dp"
+        tools:srcCompat="@tools:sample/avatars" />
+    <TextView
+        android:id="@+id/v_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20:20:20"
+        android:layout_marginLeft="275dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/v_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="75dp"
+        android:text="data base management System"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/v_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="150dp"
+        android:text="data base management System"
+        android:textSize="20sp" />
+
+
+</androidx.cardview.widget.CardView>

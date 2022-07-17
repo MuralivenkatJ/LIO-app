@@ -55,15 +55,39 @@ class Explore : BaseDrawer()
         Toast.makeText(this, loggedInAs, Toast.LENGTH_LONG).show()
         Toast.makeText(this, accessToken, Toast.LENGTH_LONG).show()
 
+        //updating the menu bar
         var navigationView = findViewById(R.id.nav_view) as NavigationView
         var menu: Menu = navigationView.menu
 
-//        if(loggedInAs == "None")
-//        {
-//            menu.findItem(R.id.my_courses).setVisible(false)
-//            menu.findItem(R.id.logout).setVisible(false)
-//
-//        }
+        if(loggedInAs == "None")
+        {
+            menu.findItem(R.id.my_courses).setVisible(false)
+            menu.findItem(R.id.wishlist).setVisible(false)
+            menu.findItem(R.id.my_courses_f).setVisible(false)
+            menu.findItem(R.id.approvals).setVisible(false)
+            menu.findItem(R.id.profile).setVisible(false)
+            menu.findItem(R.id.logout).setVisible(false)
+        }
+        else if(loggedInAs == "student")
+        {
+            menu.findItem(R.id.my_courses_f).setVisible(false)
+            menu.findItem(R.id.approvals).setVisible(false)
+            menu.findItem(R.id.login).setVisible(false)
+        }
+        else if(loggedInAs == "faculty")
+        {
+            menu.findItem(R.id.my_courses).setVisible(false)
+            menu.findItem(R.id.wishlist).setVisible(false)
+            menu.findItem(R.id.approvals).setVisible(false)
+            menu.findItem(R.id.login).setVisible(false)
+        }
+        else if(loggedInAs == "institute")
+        {
+            menu.findItem(R.id.my_courses).setVisible(false)
+            menu.findItem(R.id.wishlist).setVisible(false)
+            menu.findItem(R.id.my_courses_f).setVisible(false)
+            menu.findItem(R.id.login).setVisible(false)
+        }
         //checking if logged in
 
         getMyData()

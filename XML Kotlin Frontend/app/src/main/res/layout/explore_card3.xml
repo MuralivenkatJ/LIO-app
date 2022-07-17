@@ -15,12 +15,11 @@
 
     <ImageView
         android:id="@+id/image3"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:gravity="center"
-
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.028"
@@ -28,6 +27,53 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.003"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/c_name"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:text="TextView"
+        android:layout_marginLeft="152dp"/>
+    <TextView
+        android:id="@+id/faculty"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="TextView"
+        android:layout_marginLeft="254dp"/>
+    <TextView
+        android:id="@+id/discription"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="TextView"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="254dp"/>
+    <TextView
+        android:id="@+id/durtion"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:text="TextView"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="152dp"/>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:text="TextView"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="152dp"/>
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="100dp"
+        android:layout_height="30sp"
+        android:text="TextView"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="152dp"/>
+    <TextView
+        android:id="@+id/course_id"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:visibility="invisible"/>
 
 
 </androidx.cardview.widget.CardView>

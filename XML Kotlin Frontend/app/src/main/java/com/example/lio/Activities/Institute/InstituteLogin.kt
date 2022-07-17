@@ -54,18 +54,22 @@ class InstituteLogin : AppCompatActivity()
                 {
                     Toast.makeText(this@InstituteLogin, response.body()!!.msg, Toast.LENGTH_LONG).show()
 
-                    //shared preferences
-                    var shrdPref : SharedPreferences = getSharedPreferences("login_credentials", MODE_PRIVATE)
-                    var editor: SharedPreferences.Editor = shrdPref.edit()
+                    if(response.body()!!.msg == "Logged in Successfully")
+                    {
+                        //shared preferences
+                        var shrdPref: SharedPreferences =
+                            getSharedPreferences("login_credentials", MODE_PRIVATE)
+                        var editor: SharedPreferences.Editor = shrdPref.edit()
 
-                    editor.putString("loggedInAs", "institute")
-                    editor.putString("accessToken", response.body()!!.accessToken)
+                        editor.putString("loggedInAs", "institute")
+                        editor.putString("accessToken", response.body()!!.accessToken)
 
-                    editor.apply()
-                    //shared preferences
+                        editor.apply()
+                        //shared preferences
 
-                    //going back to explore page
-                    startActivity(Intent(this@InstituteLogin, Explore::class.java))
+                        //going back to explore page
+                        startActivity(Intent(this@InstituteLogin, Explore::class.java))
+                    }
                 }
             }
 

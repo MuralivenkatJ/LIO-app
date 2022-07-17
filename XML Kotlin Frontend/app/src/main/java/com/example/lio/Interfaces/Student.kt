@@ -3,6 +3,7 @@ package com.example.lio.Interfaces
 
 import com.example.lio.Models.Login.Login
 import com.example.lio.Models.Login.LoginResponse
+import com.example.lio.Models.Student.PlaylistVideos
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -29,4 +30,10 @@ interface Student {
         @Part("phone") ph: RequestBody,
         @Part image: MultipartBody.Part
     ): Call<String>
+
+
+    @GET("/course/enrolled/62c04ce0233544a84d46714e")
+    fun getVideos(
+        @Header("Authorization") auth: String
+    ):Call<List<PlaylistVideos>>
 }

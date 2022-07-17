@@ -2,5 +2,5 @@ package com.example.mycourses_lecturer
 
 data class MyFaculty_MyData(
     val _id: String,
-    val cours: List<MyFaculty_Course>
+    val courses: List<MyFaculty_Course>
 )

@@ -39,13 +39,13 @@ class MyCourses_Student_RecyclerAdapter(val context: Context, val userList: List
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemCourse.text = userList[position].myCoursesCourse.c_name
-        holder.itemFaculty.text= userList[position].myCoursesCourse.myCoursesFaculty.f_name
-        holder.itemViews.text= userList[position].myCoursesCourse.views.toString()
-        holder.itemRating.text= userList[position].myCoursesCourse.rating.toString()
+        holder.itemCourse.text = userList[position].course.c_name
+        holder.itemFaculty.text= userList[position].course.faculty.f_name
+        holder.itemViews.text= userList[position].course.views.toString()
+        holder.itemRating.text= userList[position].course.rating.toString()
 
         Picasso.get()
-            .load(userList[position].myCoursesCourse.image)
+            .load(userList[position].course.image)
             .into(holder.itemImage)
     }
 

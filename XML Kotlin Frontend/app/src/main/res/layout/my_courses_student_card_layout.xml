@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:id="@+id/card_view"
-    android:layout_height="250dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="10dp"
-    app:cardCornerRadius="12dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
     android:layout_margin="10dp"
+    android:onClick="goToPlayerPage"
     app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="10dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
-    tools:context=".Activities.Student.MyCoursesStudent"
-    >
+    tools:context=".Activities.Student.MyCoursesStudent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
@@ -35,9 +35,9 @@
 
         <TextView
             android:id="@+id/item_faculty"
-            android:gravity="center_vertical|center_horizontal"
             android:layout_width="190dp"
             android:layout_height="54dp"
+            android:gravity="center_vertical|center_horizontal"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,9 +48,9 @@
 
         <TextView
             android:id="@+id/item_views"
-            android:gravity="center_vertical|center_horizontal"
             android:layout_width="191dp"
             android:layout_height="49dp"
+            android:gravity="center_vertical|center_horizontal"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,9 +72,9 @@
 
         <TextView
             android:id="@+id/item_course"
-            android:gravity="center_vertical|center_horizontal"
             android:layout_width="189dp"
             android:layout_height="82dp"
+            android:gravity="center_vertical|center_horizontal"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
