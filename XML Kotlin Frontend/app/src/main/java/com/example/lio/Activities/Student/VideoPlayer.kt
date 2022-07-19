@@ -3,6 +3,7 @@ package com.example.lio.Activities.Student
 //import android.support.v7.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,9 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lio.Activities.Explore
 import com.example.lio.Interfaces.Student
+import com.example.lio.Models.Student.EnrolledData
 import com.example.lio.Models.Student.PlaylistVideos
 import com.example.lio.R
 import com.example.lio.adapters.YouTubePlayerAdapter
+import com.google.android.material.navigation.NavigationView
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -45,7 +48,7 @@ class VideoPlayer : YouTubeBaseActivity()
             override fun onInitializationSuccess(provider: YouTubePlayer.Provider?, player: YouTubePlayer?, p2: Boolean)
             {
                 YTPlayer = player!!
-                YTPlayer.loadVideo("HzeK7g8cD0Y")
+//                YTPlayer.loadVideo("HzeK7g8cD0Y")
             }
 
             override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?)
@@ -82,12 +85,28 @@ class VideoPlayer : YouTubeBaseActivity()
 
         val retrofitData = retrofitBuilder.getVideos("Bearer " + accessToken, c_id)
 
-        retrofitData.enqueue(object : Callback<List<PlaylistVideos>?>
+        retrofitData.enqueue(object : Callback<EnrolledData?>
         {
-            override fun onResponse(call: Call<List<PlaylistVideos>?>, response: Response<List<PlaylistVideos>?>)
+            override fun onResponse(call: Call<EnrolledData?>, response: Response<EnrolledData?>)
             {
                 val responseBody = response.body()!!
-                var adapter1 = YouTubePlayerAdapter(baseContext, responseBody)
+
+                //to check if the student is logged in
+                if(responseBody.playlistVideos == null)
+                {
+                    var msg = responseBody.msg
+                    if(msg == "Token expired. You have to login again.")
+                    {
+                        Toast.makeText(this@VideoPlayer, msg, Toast.LENGTH_LONG).show()
+                        startActivity(Intent(this@VideoPlayer, Explore::class.java))
+                        return
+                    }
+                    Toast.makeText(this@VideoPlayer, msg, Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@VideoPlayer, Explore::class.java))
+                    return
+                }
+
+                var adapter1 = YouTubePlayerAdapter(baseContext, responseBody.playlistVideos)
                 recycler_View.adapter = adapter1
 
                 //for listener
@@ -95,10 +114,10 @@ class VideoPlayer : YouTubeBaseActivity()
                 {
                     override fun onVideoClick(position: Int)
                     {
-                        YTPlayer.loadVideo(responseBody[position].videoId)
+                        YTPlayer.loadVideo(responseBody.playlistVideos[position].videoId)
 
-                        findViewById<TextView>(R.id.title).setText(responseBody[position].title)
-                        findViewById<TextView>(R.id.desc).setText(responseBody[position].description)
+                        findViewById<TextView>(R.id.title).setText(responseBody.playlistVideos[position].title)
+                        findViewById<TextView>(R.id.desc).setText(responseBody.playlistVideos[position].description)
 
                         YTPlayer.play()
                     }
@@ -106,9 +125,9 @@ class VideoPlayer : YouTubeBaseActivity()
                 })
             }
 
-            override fun onFailure(call: Call<List<PlaylistVideos>?>, t: Throwable)
+            override fun onFailure(call: Call<EnrolledData?>, t: Throwable)
             {
-
+                Toast.makeText(this@VideoPlayer, "Failure " + t.message, Toast.LENGTH_LONG).show()
             }
         })
 

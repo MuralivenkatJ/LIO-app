@@ -30,6 +30,8 @@ class MyCoursesFaculty : BaseDrawer()
 {
     //for menu bar
     lateinit var binding: MyCoursesFacultyBinding
+    lateinit var navigationView : NavigationView
+    lateinit  var menu: Menu
 
     var layoutManager: RecyclerView.LayoutManager? = null
     var adapter: RecyclerView.Adapter<MyCourses_Faculty_RecyclerAdapter.ViewHolder>? = null
@@ -45,8 +47,8 @@ class MyCoursesFaculty : BaseDrawer()
         //for menu bar
 
         //updating the menu bar
-        var navigationView = findViewById(R.id.nav_view) as NavigationView
-        var menu: Menu = navigationView.menu
+        navigationView = findViewById(R.id.nav_view) as NavigationView
+        menu = navigationView.menu as Menu
 
         menu.findItem(R.id.my_courses).setVisible(false)
         menu.findItem(R.id.wishlist).setVisible(false)
@@ -88,6 +90,22 @@ class MyCoursesFaculty : BaseDrawer()
         retrofitData.enqueue(object : Callback<MyFaculty_MyData?> {
             override fun onResponse(call: Call<MyFaculty_MyData?>, response: Response<MyFaculty_MyData?>) {
                 val responseBody = response.body()!!
+
+                //to check if the student is logged in
+                if(responseBody.courses == null)
+                {
+                    var msg = responseBody.msg
+                    if(msg == "Token expired. You have to login again.")
+                    {
+                        Toast.makeText(this@MyCoursesFaculty, msg, Toast.LENGTH_LONG).show()
+                        menu.performIdentifierAction(R.id.logout,0)
+                        return
+                    }
+                    Toast.makeText(this@MyCoursesFaculty, msg, Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@MyCoursesFaculty, Explore::class.java))
+                    return
+                }
+
                 adapter = MyCourses_Faculty_RecyclerAdapter(baseContext, responseBody.courses)
                 recycler_View.adapter = adapter
             }

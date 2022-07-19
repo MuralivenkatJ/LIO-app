@@ -32,6 +32,8 @@ class MyCoursesStudent : BaseDrawer()
 
     //for menu bar
     lateinit var binding : MyCoursesStudentBinding
+    lateinit var navigationView : NavigationView
+    lateinit var menu: Menu
 
     var accessToken: String? = null
 
@@ -50,8 +52,8 @@ class MyCoursesStudent : BaseDrawer()
         //for menu bar
 
         //updating the menu bar
-        var navigationView = findViewById(R.id.nav_view) as NavigationView
-        var menu: Menu = navigationView.menu
+        navigationView = findViewById(R.id.nav_view) as NavigationView
+        menu = navigationView.menu as Menu
 
         menu.findItem(R.id.my_courses_f).setVisible(false)
         menu.findItem(R.id.approvals).setVisible(false)
@@ -94,7 +96,23 @@ class MyCoursesStudent : BaseDrawer()
             override fun onResponse(call: Call<MyStudentData>, response: Response<MyStudentData>?)
             {
                 val responseBody = response?.body()!!
-                var adapter = MyCourses_Student_RecyclerAdapter(baseContext, response.body()!!.enrolled)
+
+                //to check if the student is logged in
+                if(responseBody.enrolled == null)
+                {
+                    var msg = responseBody.msg
+                    if(msg == "Token expired. You have to login again.")
+                    {
+                        Toast.makeText(this@MyCoursesStudent, msg, Toast.LENGTH_LONG).show()
+                        menu.performIdentifierAction(R.id.logout,0)
+                        return
+                    }
+                    Toast.makeText(this@MyCoursesStudent, msg, Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@MyCoursesStudent, Explore::class.java))
+                    return
+                }
+
+                var adapter = MyCourses_Student_RecyclerAdapter(baseContext, response.body()!!.enrolled!!)
                 recyclerView.adapter = adapter
 
                 adapter.setOnCourseClickListener(object: MyCourses_Student_RecyclerAdapter.OnCourseClickListener

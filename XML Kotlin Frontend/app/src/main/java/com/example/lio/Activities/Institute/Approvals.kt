@@ -27,6 +27,8 @@ class Approvals : BaseDrawer()
 {
     //for menu bar
     lateinit var binding: ApprovalsInstituteBinding
+    lateinit var navigationView : NavigationView
+    lateinit  var menu: Menu
 
     var layoutManager: RecyclerView.LayoutManager? = null
     var adapter: RecyclerView.Adapter<approvalAdapter.ViewHolder>? = null
@@ -42,8 +44,8 @@ class Approvals : BaseDrawer()
         //for menu bar
 
         //updating the menu bar
-        var navigationView = findViewById(R.id.nav_view) as NavigationView
-        var menu: Menu = navigationView.menu
+        navigationView = findViewById(R.id.nav_view) as NavigationView
+        menu = navigationView.menu as Menu
 
         menu.findItem(R.id.my_courses).setVisible(false)
         menu.findItem(R.id.wishlist).setVisible(false)
@@ -84,6 +86,22 @@ class Approvals : BaseDrawer()
         retrofitData.enqueue(object : Callback<myData_Approvals?> {
             override fun onResponse(call: Call<myData_Approvals?>, response: Response<myData_Approvals?>) {
                 val responseBody = response.body()!!
+
+                //to check if the student is logged in
+                if(responseBody.faculty_verification == null || responseBody.student_verification == null || responseBody.payment_verification == null)
+                {
+                    var msg = responseBody.msg
+                    if(msg == "Token expired. You have to login again.")
+                    {
+                        Toast.makeText(this@Approvals, msg, Toast.LENGTH_LONG).show()
+                        menu.performIdentifierAction(R.id.logout,0)
+                        return
+                    }
+                    Toast.makeText(this@Approvals, msg, Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@Approvals, Explore::class.java))
+                    return
+                }
+
                 adapter = approvalAdapter(baseContext, responseBody.faculty_verification)
                 recycler_View_Approvals.adapter = adapter
             }

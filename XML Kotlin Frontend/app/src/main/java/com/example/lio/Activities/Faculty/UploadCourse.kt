@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.os.Environment
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import com.example.lio.Activities.BaseDrawer
 import com.example.lio.Helpers.RealPathUtil
 import com.example.lio.Helpers.ServiceBuilder
@@ -91,7 +90,7 @@ class UploadCourse : BaseDrawer()
                 pickImageGallery()
             }
 
-            val submit = findViewById<Button>(R.id.button2)
+            val submit = findViewById<Button>(R.id.enroll)
             submit.setOnClickListener {
                 uploadCourse()
             }

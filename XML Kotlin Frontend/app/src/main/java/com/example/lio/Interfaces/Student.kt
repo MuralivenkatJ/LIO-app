@@ -3,6 +3,8 @@ package com.example.lio.Interfaces
 
 import com.example.lio.Models.Login.Login
 import com.example.lio.Models.Login.LoginResponse
+import com.example.lio.Models.Student.EnrolledData
+import com.example.lio.Models.Student.PaymentData
 import com.example.lio.Models.Student.PlaylistVideos
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -36,5 +38,11 @@ interface Student {
     fun getVideos(
         @Header("Authorization") auth: String,
         @Path("c_id") c_id: String
-    ):Call<List<PlaylistVideos>>
+    ):Call<EnrolledData>
+
+    @GET("/course/enroll/{c_id}")
+    fun enroll(
+        @Header("Authorization") auth: String,
+        @Path("c_id") c_id: String
+    ):Call<PaymentData>
 }

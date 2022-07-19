@@ -1,8 +1,6 @@
 package com.example.lio.adapters
 
 import android.content.Context
-import android.icu.number.NumberFormatter.with
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +12,6 @@ import com.example.lio.R
 import com.example.wishlist.wishList_Course
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.student_wishlist_card_view.view.*
-import org.w3c.dom.Text
 
 class Student_wishList_RecyclerAdapter(val context: Context,val userList:List<wishList_Course>): RecyclerView.Adapter<Student_wishList_RecyclerAdapter.ViewHolder>() {
 
@@ -31,7 +28,7 @@ class Student_wishList_RecyclerAdapter(val context: Context,val userList:List<wi
             itemCourse=itemView.item_course
             price=itemView.price
             button1=itemView.button1
-            button2=itemView.button2
+            button2=itemView.enroll
             itemRating=itemView.rating
         }
     }

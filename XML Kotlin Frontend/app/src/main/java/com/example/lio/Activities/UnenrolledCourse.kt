@@ -3,16 +3,22 @@ package com.example.lio.Activities
 //import android.support.v7.app.AppCompatActivity
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import com.example.lio.R
 
 import android.media.Image
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lio.Activities.Student.MyCoursesStudent
+import com.example.lio.Helpers.ServiceBuilder
+import com.example.lio.Interfaces.Student
 import com.example.lio.Interfaces.UnenrollAppInterface
+import com.example.lio.Models.Student.PaymentData
 import com.example.lio.Models.UnenrollDataC
 import com.squareup.picasso.Picasso
 import org.w3c.dom.Text
@@ -37,6 +43,11 @@ class UnenrolledCourse : AppCompatActivity()
     lateinit var skills: TextView
 
 
+    var accessToken: String? = null
+    var c_id: String = ""
+
+    lateinit var enrollBtn: Button
+    lateinit var wishlistBtn: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -55,6 +66,32 @@ class UnenrolledCourse : AppCompatActivity()
         skills = findViewById(R.id.skills) as TextView
 
         getMyData()
+
+        enrollBtn = findViewById(R.id.enroll) as Button
+        wishlistBtn = findViewById(R.id.add_to_wishlist) as Button
+
+        //getting the accessToken
+        var shrdPref: SharedPreferences = getSharedPreferences("login_credentials", MODE_PRIVATE)
+        var loggedInAs = shrdPref.getString("loggedInAs", "None")
+        accessToken = shrdPref.getString("accessToken", "None")
+        if(loggedInAs != "student" ||accessToken == "None" || accessToken == null)
+        {
+            enrollBtn.setOnClickListener {
+                Toast.makeText(this@UnenrolledCourse, "You have to login as student", Toast.LENGTH_LONG).show()
+            }
+            wishlistBtn.setOnClickListener {
+                Toast.makeText(this@UnenrolledCourse, "You have to login as student", Toast.LENGTH_LONG).show()
+            }
+        }
+        else
+        {
+            enrollBtn.setOnClickListener{
+                enroll(it)
+            }
+            wishlistBtn.setOnClickListener{
+                addToWishlist(it)
+            }
+        }
     }
 
     private fun getMyData()
@@ -67,7 +104,7 @@ class UnenrolledCourse : AppCompatActivity()
 
         //getting the course id
         var i = intent
-        var c_id = i.getStringExtra("c_id")
+        c_id = i.getStringExtra("c_id")!!
         if(c_id == null || c_id == "")
         {
             Toast.makeText(this, "Something went wrong try again", Toast.LENGTH_LONG).show()
@@ -136,7 +173,36 @@ class UnenrolledCourse : AppCompatActivity()
 
     fun enroll(v: View?)
     {
+        val serviceBuilder = ServiceBuilder.buildService(Student::class.java)
+        val requestCall = serviceBuilder.enroll("Bearer " + accessToken, c_id)
 
+        requestCall.enqueue(object: Callback<PaymentData>
+        {
+            override fun onResponse(call: Call<PaymentData>, response: Response<PaymentData>)
+            {
+                var responseBody = response.body()
+
+                if (responseBody != null)
+                {
+                    //if the course is free it will directly enroll
+                    if(responseBody.msg == "This course has been enrolled")
+                    {
+                        Toast.makeText(this@UnenrolledCourse, responseBody.msg, Toast.LENGTH_LONG).show()
+                        startActivity(Intent(this@UnenrolledCourse, MyCoursesStudent::class.java))
+                        return
+                    }
+                    else{
+                        Toast.makeText(this@UnenrolledCourse, responseBody.toString(), Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<PaymentData>, t: Throwable)
+            {
+                Toast.makeText(this@UnenrolledCourse, "Error : " + t.message, Toast.LENGTH_LONG).show()
+            }
+
+        })
     }
 
     fun addToWishlist(v: View?)

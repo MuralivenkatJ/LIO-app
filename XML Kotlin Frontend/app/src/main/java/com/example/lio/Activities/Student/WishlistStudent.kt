@@ -28,6 +28,8 @@ class WishlistStudent : BaseDrawer()
 {
     //for menu bar
     lateinit var binding : StudentWishlistActivityMainBinding
+    lateinit var navigationView : NavigationView
+    lateinit  var menu: Menu
 
     var layoutManager: RecyclerView.LayoutManager? = null
     var adapter: RecyclerView.Adapter<Student_wishList_RecyclerAdapter.ViewHolder>? = null
@@ -44,8 +46,8 @@ class WishlistStudent : BaseDrawer()
         //for menu bar
 
         //updating the menu bar
-        var navigationView = findViewById(R.id.nav_view) as NavigationView
-        var menu: Menu = navigationView.menu
+        navigationView = findViewById(R.id.nav_view) as NavigationView
+        menu = navigationView.menu as Menu
 
         menu.findItem(R.id.my_courses_f).setVisible(false)
         menu.findItem(R.id.approvals).setVisible(false)
@@ -87,6 +89,22 @@ class WishlistStudent : BaseDrawer()
                 response: Response<wishList_MyData?>
             ) {
                 val responseBody=response.body()!!
+
+                //to check if the student is logged in
+                if(responseBody.wishlist == null)
+                {
+                    var msg = responseBody.msg
+                    if(msg == "Token expired. You have to login again.")
+                    {
+                        Toast.makeText(this@WishlistStudent, msg, Toast.LENGTH_LONG).show()
+                        menu.performIdentifierAction(R.id.logout,0)
+                        return
+                    }
+                    Toast.makeText(this@WishlistStudent, msg, Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@WishlistStudent, Explore::class.java))
+                    return
+                }
+
                 adapter = Student_wishList_RecyclerAdapter(baseContext,responseBody.wishlist)
                 wishlist_recyclerView.adapter = adapter
             }
