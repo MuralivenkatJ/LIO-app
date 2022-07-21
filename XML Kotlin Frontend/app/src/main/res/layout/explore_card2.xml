@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="250dp"
-    android:onClick="unenrolled"
-    app:cardElevation="10dp"
-    app:cardCornerRadius="12dp"
     android:layout_margin="10dp"
     app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="10dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
     tools:context=".Activities.explore.explore_MainActivity">
@@ -32,48 +31,54 @@
         android:id="@+id/c_name"
         android:layout_width="100dp"
         android:layout_height="60dp"
-        android:text="TextView"
-        android:layout_marginLeft="152dp"/>
+        android:layout_marginLeft="152dp"
+        android:text="TextView" />
+
     <TextView
         android:id="@+id/faculty"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="TextView"
-        android:layout_marginLeft="254dp"/>
+        android:layout_marginLeft="254dp"
+        android:text="TextView" />
+
     <TextView
         android:id="@+id/discription"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TextView"
+        android:layout_marginLeft="254dp"
         android:layout_marginTop="60dp"
-        android:layout_marginLeft="254dp"/>
+        android:text="TextView" />
+
     <TextView
         android:id="@+id/durtion"
         android:layout_width="100dp"
         android:layout_height="60dp"
-        android:text="TextView"
+        android:layout_marginLeft="152dp"
         android:layout_marginTop="60dp"
-        android:layout_marginLeft="152dp"/>
+        android:text="TextView" />
+
     <TextView
         android:id="@+id/date"
         android:layout_width="100dp"
         android:layout_height="match_parent"
-        android:text="TextView"
+        android:layout_marginLeft="152dp"
         android:layout_marginTop="150dp"
-        android:layout_marginLeft="152dp"/>
+        android:text="TextView" />
+
     <TextView
         android:id="@+id/price"
         android:layout_width="100dp"
         android:layout_height="30sp"
-        android:text="TextView"
+        android:layout_marginLeft="152dp"
         android:layout_marginTop="120dp"
-        android:layout_marginLeft="152dp"/>
+        android:text="TextView" />
+
     <TextView
         android:id="@+id/course_id"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
 
 </androidx.cardview.widget.CardView>

@@ -1,13 +1,12 @@
 package com.example.lio.Activities
 
 //import android.support.v7.app.AppCompatActivity
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
 import com.example.lio.R
 
-import android.media.Image
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -15,13 +14,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lio.Activities.Student.MyCoursesStudent
+import com.example.lio.Activities.Student.PaymentInfoStudent
+import com.example.lio.Activities.Student.WishlistStudent
 import com.example.lio.Helpers.ServiceBuilder
 import com.example.lio.Interfaces.Student
 import com.example.lio.Interfaces.UnenrollAppInterface
+import com.example.lio.Models.MessageResponse
 import com.example.lio.Models.Student.PaymentData
 import com.example.lio.Models.UnenrollDataC
 import com.squareup.picasso.Picasso
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -67,7 +68,7 @@ class UnenrolledCourse : AppCompatActivity()
 
         getMyData()
 
-        enrollBtn = findViewById(R.id.enroll) as Button
+        enrollBtn = findViewById(R.id.delete_btn) as Button
         wishlistBtn = findViewById(R.id.add_to_wishlist) as Button
 
         //getting the accessToken
@@ -193,6 +194,21 @@ class UnenrolledCourse : AppCompatActivity()
                     }
                     else{
                         Toast.makeText(this@UnenrolledCourse, responseBody.toString(), Toast.LENGTH_LONG).show()
+                        if(responseBody.course != null && responseBody.institute != null)
+                        {
+                            var i = Intent(this@UnenrolledCourse, PaymentInfoStudent::class.java)
+                            i.putExtra("c_name", responseBody.course!!.c_name)
+                            i.putExtra("price", responseBody.course!!.price.toString())
+                            i.putExtra("ac_no", responseBody.institute!!.payment_details.ac_no)
+                            i.putExtra("ifsc", responseBody.institute!!.payment_details.ifsc)
+                            i.putExtra("ac_name", responseBody.institute!!.payment_details.ac_name)
+                            i.putExtra("c_id", responseBody.course!!._id)
+
+
+                            startActivity(i)
+                        }
+                        else
+                            Toast.makeText(this@UnenrolledCourse, "Something went wrong", Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -207,7 +223,27 @@ class UnenrolledCourse : AppCompatActivity()
 
     fun addToWishlist(v: View?)
     {
+        var serviceBuilder = ServiceBuilder.buildService(Student::class.java)
+        var requestCall = serviceBuilder.addToWishlist("Bearer " + accessToken, c_id)
 
+        requestCall.enqueue(object: Callback<MessageResponse>
+        {
+            override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>)
+            {
+                Toast.makeText(this@UnenrolledCourse, response.body()!!.msg, Toast.LENGTH_LONG).show()
+                if(response.body()!!.msg == "This course has been added to the wishlist")
+                {
+                    startActivity(Intent(this@UnenrolledCourse, WishlistStudent::class.java))
+                    return
+                }
+            }
+
+            override fun onFailure(call: Call<MessageResponse>, t: Throwable)
+            {
+                Toast.makeText(this@UnenrolledCourse, t.message, Toast.LENGTH_LONG).show()
+            }
+
+        })
     }
 
 }

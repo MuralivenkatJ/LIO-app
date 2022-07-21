@@ -3,6 +3,7 @@ package com.example.lio.Interfaces
 
 import com.example.lio.Models.Login.Login
 import com.example.lio.Models.Login.LoginResponse
+import com.example.lio.Models.MessageResponse
 import com.example.lio.Models.Student.EnrolledData
 import com.example.lio.Models.Student.PaymentData
 import com.example.lio.Models.Student.PlaylistVideos
@@ -45,4 +46,27 @@ interface Student {
         @Header("Authorization") auth: String,
         @Path("c_id") c_id: String
     ):Call<PaymentData>
+
+    @GET("course/addToWishlist/{c_id}")
+    fun addToWishlist(
+        @Header("Authorization") auth: String,
+        @Path("c_id") c_id: String
+    ):Call<MessageResponse>
+
+    @GET("course/removeFromWishlist/{c_id}")
+    fun removeFromWishlist(
+        @Header("Authorization") auth: String,
+        @Path("c_id") c_id: String
+    ):Call<MessageResponse>
+
+
+
+    @Multipart
+    @POST("student/payment")
+    fun uploadScreenshot(
+        @Header("Authorization") auth: RequestBody,
+        @Part("c_id") c_id: RequestBody,
+        @Part("utrid") utrid: RequestBody,
+        @Part("screenshot") screenshot: MultipartBody.Part
+    ):Call<MessageResponse>
 }

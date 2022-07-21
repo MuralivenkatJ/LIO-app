@@ -90,7 +90,7 @@ class UploadCourse : BaseDrawer()
                 pickImageGallery()
             }
 
-            val submit = findViewById<Button>(R.id.enroll)
+            val submit = findViewById<Button>(R.id.delete_btn)
             submit.setOnClickListener {
                 uploadCourse()
             }

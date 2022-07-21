@@ -82,7 +82,7 @@
                     android:text="Account Number :" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/ac_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -101,7 +101,7 @@
                     android:text="IFSC :" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/ifsc_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -120,7 +120,7 @@
                     android:text="Account Holder :" />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/ah_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -161,10 +161,10 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/utrid"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
 
-                        />
+                        android:layout_height="match_parent" />
                 </com.google.android.material.textfield.TextInputLayout>
             </TableRow>
 
@@ -178,6 +178,7 @@
                     android:id="@+id/button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="uploadScreenshot"
                     android:text="Payment Done" />
             </TableRow>
 

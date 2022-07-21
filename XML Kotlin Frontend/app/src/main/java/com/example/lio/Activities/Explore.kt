@@ -101,12 +101,6 @@ class Explore : BaseDrawer()
         recycler_View3.layoutManager=layoutManager2
     }
 
-    fun unenrolled(v: View?)
-    {
-        var i = Intent(this, UnenrolledCourse::class.java)
-        startActivity(i)
-    }
-
     private fun getMyData()
     {
         val retrofitBuilder = Retrofit.Builder()

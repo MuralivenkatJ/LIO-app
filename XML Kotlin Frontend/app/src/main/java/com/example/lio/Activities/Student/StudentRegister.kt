@@ -34,7 +34,7 @@ import com.example.lio.R
 
 class StudentRegister : AppCompatActivity() {
 
-     lateinit var spinner_value : String
+    lateinit var spinner_value : String
     lateinit var image_uri: Uri
     lateinit var real_path: String
     override fun onCreate(savedInstanceState: Bundle?) {
