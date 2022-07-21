@@ -64,7 +64,7 @@ interface Student {
     @Multipart
     @POST("student/payment")
     fun uploadScreenshot(
-        @Header("Authorization") auth: RequestBody,
+        @Header("Authorization") auth: String,
         @Part("c_id") c_id: RequestBody,
         @Part("utrid") utrid: RequestBody,
         @Part("screenshot") screenshot: MultipartBody.Part

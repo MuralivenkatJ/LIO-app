@@ -3,6 +3,7 @@ package com.example.lio.Activities.Faculty
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 //import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.os.Environment
 import android.view.View
 import android.widget.*
 import com.example.lio.Activities.BaseDrawer
+import com.example.lio.Activities.Explore
 import com.example.lio.Helpers.RealPathUtil
 import com.example.lio.Helpers.ServiceBuilder
 import com.example.lio.Interfaces.CourseInterface
@@ -42,6 +44,9 @@ class UploadCourse : BaseDrawer()
         lateinit var filePath : String
         lateinit var real_path : String
 
+
+    var accessToken: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -60,6 +65,21 @@ class UploadCourse : BaseDrawer()
             description = findViewById(R.id.description) as EditText
             skills = findViewById(R.id.skills) as EditText
             price = findViewById(R.id.price) as EditText
+
+
+        //getting the accessToken
+        var shrdPref: SharedPreferences = getSharedPreferences("login_credentials", MODE_PRIVATE)
+        accessToken = shrdPref.getString("accessToken", "None")
+        if(accessToken == "None" || accessToken == null)
+        {
+            var editor: SharedPreferences.Editor = shrdPref.edit()
+            editor.clear()
+            editor.apply()
+
+            Toast.makeText(this, "You have to log in", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, Explore::class.java))
+            return
+        }
 
 
             val level = arrayOf("Beginner", "Intermediate", "Advanced")
@@ -191,7 +211,7 @@ class UploadCourse : BaseDrawer()
 
 
             var serviceBuilder = ServiceBuilder.buildService(CourseInterface::class.java)
-            var requestCall = serviceBuilder.uploadCourse(n, d, s, p, l, g, pl, sk,body)
+            var requestCall = serviceBuilder.uploadCourse(accessToken!!, n, d, s, p, l, g, pl, sk,body)
 
 
             requestCall.enqueue(object : Callback<String>

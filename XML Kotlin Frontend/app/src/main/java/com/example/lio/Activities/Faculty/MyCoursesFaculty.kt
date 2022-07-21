@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -115,4 +116,12 @@ class MyCoursesFaculty : BaseDrawer()
             }
         })
     }
+
+
+    fun uploadCourse(v: View?)
+    {
+        startActivity(Intent(this@MyCoursesFaculty, UploadCourse::class.java))
+    }
+
+
 }

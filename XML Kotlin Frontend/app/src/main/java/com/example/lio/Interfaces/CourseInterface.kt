@@ -10,9 +10,9 @@ import java.io.File
 interface CourseInterface
 {
     @Multipart
-    @Headers("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmX2lkIjoiNjJiZmZkMGYxMjg0N2NlODg0NWVjYTQ0IiwiaWF0IjoxNjU3MDE3Njc1LCJleHAiOjE2NTc0NDk2NzV9.P7-MTh4XM_esnPWQRisPO0XUlQRi1RJYw3zCrGTXg_Y")
     @POST("course/upload/")
     fun uploadCourse(
+        @Header("Authorization") auth: String,
         @Part("name") n: RequestBody,
         @Part("desc") d: RequestBody,
         @Part("spec") s: RequestBody,

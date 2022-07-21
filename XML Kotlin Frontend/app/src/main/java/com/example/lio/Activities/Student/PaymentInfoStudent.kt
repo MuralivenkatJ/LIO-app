@@ -170,7 +170,7 @@ class PaymentInfoStudent : AppCompatActivity()
         var a : RequestBody = RequestBody.create(MultipartBody.FORM, auth)
 
         var serviceBuilder = ServiceBuilder.buildService(Student::class.java)
-        var reqeuestCall = serviceBuilder.uploadScreenshot(a, c, utr, body)
+        var reqeuestCall = serviceBuilder.uploadScreenshot(auth, c, utr, body)
 
         reqeuestCall.enqueue(object: Callback<MessageResponse>{
             override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>)
