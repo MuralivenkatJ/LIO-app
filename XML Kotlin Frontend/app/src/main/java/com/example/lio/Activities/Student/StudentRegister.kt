@@ -298,7 +298,7 @@ class StudentRegister : AppCompatActivity() {
 
 
             val serviceBuilder = ServiceBuilder.buildService(Student::class.java)
-            val requestCall = serviceBuilder.registerFaculty(n, e, p, ph, i, body)
+            val requestCall = serviceBuilder.registerStudent(n, e, p, i, ph, body)
 
             requestCall.enqueue(object : Callback<String>{
                 override fun onResponse(call: Call<String>?, response: Response<String>?)

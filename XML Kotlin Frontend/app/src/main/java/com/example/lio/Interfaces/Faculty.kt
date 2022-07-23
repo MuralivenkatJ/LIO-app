@@ -20,10 +20,10 @@ interface Faculty {
     fun registerFaculty(
         @Part("name") n:RequestBody,
         @Part("email") e:RequestBody,
-        @Part("password") p:RequestBody,
-        @Part("qualification") q:RequestBody,
-        @Part("phone") ph:RequestBody,
         @Part("institute") i:RequestBody,
+        @Part("qualification") q:RequestBody,
+        @Part("password") p:RequestBody,
+        @Part("phone") ph:RequestBody,
         @Part image: MultipartBody.Part
     ): Call<String>
 

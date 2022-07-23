@@ -15,6 +15,7 @@ import com.example.lio.Activities.Explore
 import com.example.lio.Helpers.RealPathUtil
 import com.example.lio.Helpers.ServiceBuilder
 import com.example.lio.Interfaces.CourseInterface
+import com.example.lio.Models.MessageResponse
 import com.example.lio.R
 import com.example.lio.databinding.UploadCourseBinding
 import okhttp3.MultipartBody
@@ -209,22 +210,25 @@ class UploadCourse : BaseDrawer()
             var pl : RequestBody = RequestBody.create(okhttp3.MultipartBody.FORM, playlist)
             var sk : RequestBody = RequestBody.create(okhttp3.MultipartBody.FORM, skills)
 
+            var headers: HashMap<String, String> = HashMap()
+            if(accessToken != null)
+                headers.put("Authorization", "Bearer " + accessToken)
 
             var serviceBuilder = ServiceBuilder.buildService(CourseInterface::class.java)
-            var requestCall = serviceBuilder.uploadCourse(accessToken!!, n, d, s, p, l, g, pl, sk,body)
+            var requestCall = serviceBuilder.uploadCourse(headers, n, d, s, p, l, g, pl, sk,body)
 
 
-            requestCall.enqueue(object : Callback<String>
+            requestCall.enqueue(object : Callback<MessageResponse>
             {
-                override fun onResponse(call: Call<String>?, response: Response<String>?) {
+                override fun onResponse(call: Call<MessageResponse>?, response: Response<MessageResponse>?) {
                     if (response != null) {
-                        Toast.makeText(this@UploadCourse, response.body().toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@UploadCourse, response.body()!!.msg, Toast.LENGTH_SHORT).show()
                     }
                 }
 
-                override fun onFailure(call: Call<String>?, t: Throwable?) {
+                override fun onFailure(call: Call<MessageResponse>?, t: Throwable?) {
                     if (t != null) {
-                        Toast.makeText(this@UploadCourse, t.message.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@UploadCourse, t.message, Toast.LENGTH_SHORT).show()
                     }
                 }
 

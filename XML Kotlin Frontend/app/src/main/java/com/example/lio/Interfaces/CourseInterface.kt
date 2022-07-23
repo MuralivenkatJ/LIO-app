@@ -1,5 +1,6 @@
 package com.example.lio.Interfaces
 
+import com.example.lio.Models.MessageResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -12,7 +13,7 @@ interface CourseInterface
     @Multipart
     @POST("course/upload/")
     fun uploadCourse(
-        @Header("Authorization") auth: String,
+        @HeaderMap token: HashMap<String, String>,
         @Part("name") n: RequestBody,
         @Part("desc") d: RequestBody,
         @Part("spec") s: RequestBody,
@@ -21,8 +22,8 @@ interface CourseInterface
         @Part("guided_project") g: RequestBody,
         @Part("playlist") pl: RequestBody,
         @Part("skills") sk: RequestBody,
-       @Part image : MultipartBody.Part
-    ): Call<String>
+        @Part image : MultipartBody.Part
+    ): Call<MessageResponse>
 
 //    fun uploadTheCourse(
 //        @Body course: UploadCourse

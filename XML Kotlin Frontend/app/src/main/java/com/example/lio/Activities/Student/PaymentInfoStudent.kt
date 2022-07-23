@@ -21,9 +21,6 @@ import com.example.lio.Helpers.RealPathUtil
 import com.example.lio.Helpers.ServiceBuilder
 import com.example.lio.Interfaces.Student
 import com.example.lio.Models.MessageResponse
-import com.example.lio.Models.Student.PaymentCourse
-import com.example.lio.Models.Student.PaymentData
-import com.example.lio.Models.Student.PaymentInstitute
 import com.example.lio.R
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -169,8 +166,11 @@ class PaymentInfoStudent : AppCompatActivity()
         var c: RequestBody = RequestBody.create(MultipartBody.FORM, c_id)
         var a : RequestBody = RequestBody.create(MultipartBody.FORM, auth)
 
+        val headers: HashMap<String, String> = HashMap()
+        headers.put("Authorization", auth)
+
         var serviceBuilder = ServiceBuilder.buildService(Student::class.java)
-        var reqeuestCall = serviceBuilder.uploadScreenshot(auth, c, utr, body)
+        var reqeuestCall = serviceBuilder.uploadScreenshot(headers, c, utr, body)
 
         reqeuestCall.enqueue(object: Callback<MessageResponse>{
             override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>)

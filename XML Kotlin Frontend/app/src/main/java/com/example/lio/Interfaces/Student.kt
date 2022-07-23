@@ -25,11 +25,11 @@ interface Student {
     //@Multipart
     @Multipart
     @POST("student/register")
-    fun registerFaculty(
+    fun registerStudent(
         @Part("name") n: RequestBody,
         @Part("email") e: RequestBody,
         @Part("password") p: RequestBody,
-        @Part("qualification") q: RequestBody,
+        @Part("institute") i: RequestBody,
         @Part("phone") ph: RequestBody,
         @Part image: MultipartBody.Part
     ): Call<String>
@@ -64,9 +64,9 @@ interface Student {
     @Multipart
     @POST("student/payment")
     fun uploadScreenshot(
-        @Header("Authorization") auth: String,
+        @HeaderMap token: HashMap<String, String>,
         @Part("c_id") c_id: RequestBody,
         @Part("utrid") utrid: RequestBody,
-        @Part("screenshot") screenshot: MultipartBody.Part
+        @Part screenshot: MultipartBody.Part
     ):Call<MessageResponse>
 }

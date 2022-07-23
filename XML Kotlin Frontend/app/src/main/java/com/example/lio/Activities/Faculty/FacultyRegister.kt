@@ -299,7 +299,7 @@ class FacultyRegister : AppCompatActivity() {
 
 
         val serviceBuilder = ServiceBuilder.buildService(Faculty::class.java)
-        val requestCall = serviceBuilder.registerFaculty(n, e, i, p, q, ph, body)
+        val requestCall = serviceBuilder.registerFaculty(n, e, i, q, p, ph, body)
 
         requestCall.enqueue(object : Callback<String>
         {
