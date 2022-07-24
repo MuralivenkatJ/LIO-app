@@ -1,11 +1,13 @@
 package com.example.lio.adapters
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lio.Models.Student.PlaylistVideos
 import com.example.lio.R
@@ -31,14 +33,18 @@ class YouTubePlayerAdapter(val context: Context, val userList1: List<PlaylistVid
     class ViewHolder(itemView: View, listener: onVideoClickListener):RecyclerView.ViewHolder(itemView)
     {
         var itemImage1: ImageView
+        var itemImage2: ImageView
         var itemDuration: TextView
         var itemCourse:TextView
         var itemDiscription:TextView
+        var itemIndex: TextView
         init {
             itemImage1=itemView.v_thumbnail
+            itemImage2 = itemView.v_comp_icon
             itemDuration=itemView.v_duration
             itemCourse=itemView.v_title
             itemDiscription=itemView.v_description
+            itemIndex = itemView.index
 
             //for listener
             itemView.setOnClickListener {
@@ -57,10 +63,14 @@ class YouTubePlayerAdapter(val context: Context, val userList1: List<PlaylistVid
         holder.itemDuration.text=userList1[position].duration
         holder.itemDiscription.text=userList1[position].description
         holder.itemCourse.text=userList1[position].title
+        holder.itemIndex.text = userList1[position].index.toString()
 
         Picasso.get()
             .load(userList1[position].thumbnail)
             .into(holder.itemImage1)
+
+        val image: Drawable? = ContextCompat.getDrawable(context.applicationContext, R.drawable.pending)
+        holder.itemImage2.setImageDrawable(image)
 
     }
 

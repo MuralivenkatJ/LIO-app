@@ -43,7 +43,7 @@ class MyCourses_Student_RecyclerAdapter(val context: Context, val userList: List
 
         init {
             itemImage=itemView.item_image
-            itemCourse=itemView.item_course
+            itemCourse=itemView.item_desc
             itemFaculty=itemView.item_faculty
             itemViews=itemView.item_views
             itemRating=itemView.item_rating

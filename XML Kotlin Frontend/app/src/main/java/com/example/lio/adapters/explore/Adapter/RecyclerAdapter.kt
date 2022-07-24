@@ -33,18 +33,18 @@ class RecyclerAdapter(val context: Context,val userList1: List<explore_MostViewe
         var itemImage1:ImageView
         var itemC_name: TextView
         var itemDescription:TextView
-        var itemDate:TextView
+        var itemLevel:TextView
         var itemPrice:TextView
-        var itemCorse_id:TextView
         var itemDuration:TextView
+        var itemRating: TextView
         init {
             itemImage1=itemView.image1
             itemC_name=itemView.c_name
-            itemDate=itemView.date
+            itemLevel=itemView.level
             itemDescription=itemView.discription
             itemPrice=itemView.price
-            itemCorse_id=itemView.course_id
             itemDuration=itemView.durtion
+            itemRating = itemView.c_rating
 
             //for listener
             itemView.setOnClickListener {
@@ -65,11 +65,11 @@ class RecyclerAdapter(val context: Context,val userList1: List<explore_MostViewe
             .into(holder.itemImage1)
 
         holder.itemDuration.text=userList1[position].duration
-        holder.itemDate.text=userList1[position].date
+        holder.itemLevel.text=userList1[position].level
         holder.itemDescription.text=userList1[position].description
         holder.itemC_name.text=userList1[position].c_name
         holder.itemPrice.text=userList1[position].price.toString()
-        holder.itemCorse_id.text=userList1[position]._id
+        holder.itemRating.text = userList1[position].rating.toString()
     }
 
     override fun getItemCount(): Int {

@@ -1,6 +1,5 @@
 package com.example.lio.adapters
 
-import android.R.attr.data
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +8,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lio.Helpers.ServiceBuilder
-import com.example.lio.Interfaces.Student
 import com.example.lio.R
 import com.example.wishlist.wishList_Course
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.student_wishlist_card_view.view.*
+import kotlinx.android.synthetic.main.video_player.view.*
 
 
 class Student_wishList_RecyclerAdapter(val context: Context,val userList:List<wishList_Course>): RecyclerView.Adapter<Student_wishList_RecyclerAdapter.ViewHolder>()
@@ -50,16 +48,16 @@ class Student_wishList_RecyclerAdapter(val context: Context,val userList:List<wi
         var delete_btn: Button
         var price:TextView
         var itemRating: TextView
-        var c_id: TextView
+        var itemDesc: TextView
 
         init {
             itemImage=itemView.image
-            itemCourse=itemView.item_course
+            itemCourse=itemView.c_title
             price=itemView.price
             enroll_btn=itemView.enroll_btn
             delete_btn=itemView.delete_btn
             itemRating=itemView.rating
-            c_id = itemView.c_id
+            itemDesc = itemView.item_desc
 
             itemView.enroll_btn.setOnClickListener {
                 e_listener.onEnrollClick(adapterPosition)
@@ -79,7 +77,7 @@ class Student_wishList_RecyclerAdapter(val context: Context,val userList:List<wi
         holder.itemCourse.text=userList[position].c_name
         holder.itemRating.text=userList[position].rating.toString()
         holder.price.text=userList[position].price.toString()
-        holder.c_id.text = userList[position]._id.toString()
+        holder.itemDesc.text = userList[position].description
         Picasso.get()
             .load(userList[position].image)
             .into(holder.itemImage)
