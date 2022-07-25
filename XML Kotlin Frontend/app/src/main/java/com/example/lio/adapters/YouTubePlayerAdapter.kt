@@ -69,7 +69,11 @@ class YouTubePlayerAdapter(val context: Context, val userList1: List<PlaylistVid
             .load(userList1[position].thumbnail)
             .into(holder.itemImage1)
 
-        val image: Drawable? = ContextCompat.getDrawable(context.applicationContext, R.drawable.pending)
+        val image: Drawable?
+        if(userList1[position].isViewed)
+            image = ContextCompat.getDrawable(context.applicationContext, R.drawable.completed)
+        else
+            image = ContextCompat.getDrawable(context.applicationContext, R.drawable.pending)
         holder.itemImage2.setImageDrawable(image)
 
     }

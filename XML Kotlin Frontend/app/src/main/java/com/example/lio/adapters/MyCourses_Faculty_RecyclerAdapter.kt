@@ -53,15 +53,15 @@ class MyCourses_Faculty_RecyclerAdapter(val context: Context,val userList: List<
     {
         holder.itemCourse.text      = userList[position].c_name
         holder.itemDescription.text = userList[position].description
-        holder.itemViews.text       = userList[position].views.toString()
+        holder.itemViews.text       = userList[position].views.toString() + " views"
         holder.itemRating.text      = userList[position].rating.toString()
         holder.itemPrice.text       = userList[position].price.toString()
 
         holder.itemDuration.text   = userList[position].duration
-        holder.itemVideos.text     = userList[position].no_of_videos.toString()
+        holder.itemVideos.text     = userList[position].no_of_videos.toString() + " videos"
 
-        holder.itemProgress.text   = "2"
-        holder.itemCompleted.text  = "1"
+        holder.itemProgress.text   = userList[position].inprogress.toString() + " in progress"
+        holder.itemCompleted.text  = userList[position].completed.toString() + " completed"
 
         Picasso.get()
             .load(userList[position].image)

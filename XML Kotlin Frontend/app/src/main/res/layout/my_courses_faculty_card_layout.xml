@@ -4,98 +4,125 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    app:cardElevation="10dp"
-    app:cardCornerRadius="12dp"
-    android:layout_margin="10dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="10dp"
     app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="5dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
     tools:context=".Activities.Faculty.MyCoursesFaculty">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="200dp"
+        android:adjustViewBounds="true" />
 
-            <ImageView
-                android:id="@+id/image1"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:adjustViewBounds="true"
-                />
-            <TextView
-                android:id="@+id/text1"
-                android:gravity="center"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:text="$800" />
-            <TextView
-                android:id="@+id/text2"
-                android:gravity="center"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:text="$800" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_margin="10dp"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/text3"
-                android:gravity="center"
-                android:layout_width="125dp"
-                android:layout_height="50dp"
-                android:text="Data Base management Systrm" />
-            <TextView
-                android:id="@+id/text4"
-                android:gravity="center"
-                android:layout_width="125dp"
-                android:layout_height="50dp"
-                android:text="description" />
-            <TextView
-                android:id="@+id/text5"
-                android:gravity="center"
-                android:layout_width="125dp"
-                android:layout_height="50dp"
-                android:text="views" />
-            <TextView
-                android:id="@+id/text6"
-                android:gravity="center"
-                android:layout_width="125dp"
-                android:layout_height="50dp"
-                android:text="Inprogress" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="bottom"
+        android:drawableLeft="@drawable/rupee"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="175dp"
+        android:gravity="center"
+        android:text="$800" />
 
-        <LinearLayout
-            android:layout_margin="10dp"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/text7"
-                android:gravity="center"
-                android:layout_width="110dp"
-                android:layout_height="70dp"
-                android:text="04:00:00" />
-            <TextView
-                android:id="@+id/text8"
-                android:gravity="center"
-                android:layout_width="110dp"
-                android:layout_height="70dp"
-                android:text="number of videos" />
-            <TextView
-                android:id="@+id/text9"
-                android:gravity="center"
-                android:layout_width="110dp"
-                android:layout_height="60dp"
-                android:text="completed" />
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="bottom|right"
+        android:drawableRight="@drawable/star"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="175dp"
+        android:gravity="center"
+        android:text="$800" />
 
-        </LinearLayout>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="120dp"
+        android:gravity="center"
+        android:text="Data Base management Systrm"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="55dp"
+        android:gravity="center"
+        android:text="description"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/text8"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="number of videos"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/text7"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="04:00:00" />
+
+    <TextView
+        android:id="@+id/text5"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="views"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/text6"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="Inprogress"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/text9"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="completed"
+        android:textSize="14sp" />
+
 </androidx.cardview.widget.CardView>

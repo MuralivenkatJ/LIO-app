@@ -20,5 +20,7 @@ data class MyFaculty_Course(
     val myFacultyReviews: List<MyFaculty_Review>,
     val skills: List<String>,
     val specialization: String,
-    val views: Int
+    val views: Int,
+    val inprogress: Int,
+    val completed: Int
 )

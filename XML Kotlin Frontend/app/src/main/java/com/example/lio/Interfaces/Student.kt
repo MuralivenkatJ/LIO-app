@@ -9,6 +9,7 @@ import com.example.lio.Models.Student.PaymentData
 import com.example.lio.Models.Student.PlaylistVideos
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -40,6 +41,13 @@ interface Student {
         @Header("Authorization") auth: String,
         @Path("c_id") c_id: String
     ):Call<EnrolledData>
+
+    @GET("/course/watched/{c_id}/{index}")
+    fun watched(
+        @Header("Authorization") auth: String,
+        @Path("c_id") c_id: String,
+        @Path("index") index: Int
+    ):Call<MessageResponse>
 
     @GET("/course/enroll/{c_id}")
     fun enroll(

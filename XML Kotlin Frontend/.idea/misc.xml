@@ -10,12 +10,21 @@
         <entry key="..\:/LIO app/XML Kotlin Frontend/app/src/main/res/menu/main_drawer_menu.xml" value="0.18645833333333334" />
         <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/drawable/rupee.xml" value="0.155" />
         <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/drawable/star.xml" value="0.155" />
+        <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/approvalinstitute_card.xml" value="0.1" />
+        <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/approvalinstitute_card2.xml" value="0.1" />
+        <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/approvalinstitute_card3.xml" value="0.1" />
+        <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/approvals_institute.xml" value="0.2" />
+        <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/base_drawer.xml" value="0.25416666666666665" />
+        <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/drawer_header.xml" value="0.25416666666666665" />
         <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/explore.xml" value="0.25416666666666665" />
         <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/explore_card1.xml" value="0.2" />
         <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/explore_card2.xml" value="0.25416666666666665" />
         <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/explore_card3.xml" value="0.25416666666666665" />
+        <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/my_courses_faculty.xml" value="0.264" />
+        <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/my_courses_faculty_card_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/my_courses_student.xml" value="0.25416666666666665" />
         <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/my_courses_student_card_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/splash_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/student_wishlist_activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/student_wishlist_card_view.xml" value="0.25416666666666665" />
         <entry key="..\:/LIO-app/XML Kotlin Frontend/app/src/main/res/layout/video_player.xml" value="0.25416666666666665" />

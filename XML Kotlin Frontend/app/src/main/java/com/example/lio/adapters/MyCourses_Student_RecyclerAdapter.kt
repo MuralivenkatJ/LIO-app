@@ -1,10 +1,12 @@
 package com.example.lio.adapters
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lio.Models.Student.MyCourses_Enrolled
@@ -40,6 +42,7 @@ class MyCourses_Student_RecyclerAdapter(val context: Context, val userList: List
         var itemFaculty:TextView
         var itemViews:TextView
         var itemRating:TextView
+        var progressBar: ProgressBar
 
         init {
             itemImage=itemView.item_image
@@ -47,6 +50,7 @@ class MyCourses_Student_RecyclerAdapter(val context: Context, val userList: List
             itemFaculty=itemView.item_faculty
             itemViews=itemView.item_views
             itemRating=itemView.item_rating
+            progressBar = itemView.progressBar
 
             //for listener
             itemView.setOnClickListener {
@@ -71,6 +75,10 @@ class MyCourses_Student_RecyclerAdapter(val context: Context, val userList: List
         Picasso.get()
             .load(userList[position].course.image)
             .into(holder.itemImage)
+
+        holder.progressBar.max = userList[position].course.no_of_videos
+        ObjectAnimator.ofInt(holder.progressBar, "progress", userList[position].watched.size)
+            .start()
     }
 
     override fun getItemCount(): Int

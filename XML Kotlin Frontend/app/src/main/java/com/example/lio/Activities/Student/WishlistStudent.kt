@@ -169,7 +169,6 @@ class WishlistStudent : BaseDrawer()
                         return
                     }
                     else{
-                        Toast.makeText(this@WishlistStudent, responseBody.toString(), Toast.LENGTH_LONG).show()
                         if(responseBody.course != null && responseBody.institute != null)
                         {
                             var i = Intent(this@WishlistStudent, PaymentInfoStudent::class.java)
@@ -184,7 +183,7 @@ class WishlistStudent : BaseDrawer()
                             startActivity(i)
                         }
                         else
-                            Toast.makeText(this@WishlistStudent, "Something went wrong", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@WishlistStudent, responseBody.msg, Toast.LENGTH_LONG).show()
                     }
                 }
             }
