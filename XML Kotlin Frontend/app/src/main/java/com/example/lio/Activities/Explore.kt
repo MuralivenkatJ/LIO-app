@@ -44,6 +44,7 @@ class Explore : BaseDrawer()
         //for menu bar
         binding = ExploreBinding.inflate(layoutInflater)
         allocateActivityTitle("Explore")
+        setTitle("Explore")
         setContentView(binding.root)
         //for menu bar
 
@@ -52,8 +53,8 @@ class Explore : BaseDrawer()
         var loggedInAs = shrdPref.getString("loggedInAs", "None")
         var accessToken = shrdPref.getString("accessToken", "Empty")
 
-        Toast.makeText(this, loggedInAs, Toast.LENGTH_LONG).show()
-        Toast.makeText(this, accessToken, Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, loggedInAs, Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, accessToken, Toast.LENGTH_LONG).show()
 
         //updating the menu bar
         var navigationView = findViewById(R.id.nav_view) as NavigationView
@@ -131,7 +132,7 @@ class Explore : BaseDrawer()
                     {
                         var c_id = responseBody.most_viewed[position]._id
 
-                        Toast.makeText(this@Explore, c_id, Toast.LENGTH_LONG).show()
+                        //Toast.makeText(this@Explore, c_id, Toast.LENGTH_LONG).show()
 
                         var i = Intent(this@Explore, UnenrolledCourse::class.java)
                         i.putExtra("c_id", c_id)
@@ -146,7 +147,7 @@ class Explore : BaseDrawer()
                     {
                         var c_id = responseBody.recently_launched[position]._id
 
-                        Toast.makeText(this@Explore, c_id, Toast.LENGTH_LONG).show()
+                        //Toast.makeText(this@Explore, c_id, Toast.LENGTH_LONG).show()
 
                         var i = Intent(this@Explore, UnenrolledCourse::class.java)
                         i.putExtra("c_id", c_id)
@@ -161,7 +162,7 @@ class Explore : BaseDrawer()
                     {
                         var c_id = responseBody.guided_project[position]._id
 
-                        Toast.makeText(this@Explore, c_id, Toast.LENGTH_LONG).show()
+                        //Toast.makeText(this@Explore, c_id, Toast.LENGTH_LONG).show()
 
                         var i = Intent(this@Explore, UnenrolledCourse::class.java)
                         i.putExtra("c_id", c_id)

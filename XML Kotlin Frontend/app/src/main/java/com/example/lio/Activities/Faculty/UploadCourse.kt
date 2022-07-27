@@ -153,7 +153,7 @@ class UploadCourse : BaseDrawer()
                     val context: Context = this@UploadCourse
                     val realPathObj : RealPathUtil = RealPathUtil()
                     real_path = realPathObj.getPath(this, image_uri).toString()
-                    Toast.makeText(this,"image uploaded " + real_path + " |", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this,"image uploaded " + real_path + " |", Toast.LENGTH_SHORT).show()
 
                     //identifier.toString()
                 }
@@ -174,7 +174,8 @@ class UploadCourse : BaseDrawer()
 
             //Radio button data
             val selectedOption : Int = findViewById<RadioGroup>(R.id.radioGroup)!!.checkedRadioButtonId
-            if(selectedOption == 1)
+            var selectedBtn = findViewById<RadioButton>(selectedOption)
+            if(selectedBtn.text.toString() == "Course")
                 guided_project = false
             else
                 guided_project = true
@@ -184,7 +185,7 @@ class UploadCourse : BaseDrawer()
             )
 
             var file : File = File(real_path)
-            Toast.makeText(this,"After File ", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"After File ", Toast.LENGTH_SHORT).show()
             //var requestFile : RequestBody = RequestBody.create(MediaType.parse("mulitpart/form-data"), file)
 
 
@@ -194,10 +195,10 @@ class UploadCourse : BaseDrawer()
             val requestFile = RequestBody.create(
                 okhttp3.MediaType.parse("image/*"), file
             )
-            Toast.makeText(this,"After requestion ", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"After requestion ", Toast.LENGTH_SHORT).show()
 
             val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-            Toast.makeText(this,"after Body ", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"after Body ", Toast.LENGTH_SHORT).show()
 
 
             //other data
@@ -223,12 +224,13 @@ class UploadCourse : BaseDrawer()
                 override fun onResponse(call: Call<MessageResponse>?, response: Response<MessageResponse>?) {
                     if (response != null) {
                         Toast.makeText(this@UploadCourse, response.body()!!.msg, Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@UploadCourse, MyCoursesFaculty::class.java))
                     }
                 }
 
                 override fun onFailure(call: Call<MessageResponse>?, t: Throwable?) {
                     if (t != null) {
-                        Toast.makeText(this@UploadCourse, t.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@UploadCourse, "Error : " + t.message, Toast.LENGTH_SHORT).show()
                     }
                 }
 

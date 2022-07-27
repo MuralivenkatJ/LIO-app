@@ -94,12 +94,12 @@ class VideoPlayer : YouTubeBaseActivity()
         requestCall.enqueue(object: Callback<MessageResponse>{
             override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>)
             {
-                Toast.makeText(this@VideoPlayer, "Success", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@VideoPlayer, "Success", Toast.LENGTH_LONG).show()
             }
 
             override fun onFailure(call: Call<MessageResponse>, t: Throwable)
             {
-                Toast.makeText(this@VideoPlayer, "Failure", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@VideoPlayer, "Failure", Toast.LENGTH_LONG).show()
             }
 
         })
@@ -166,7 +166,7 @@ class VideoPlayer : YouTubeBaseActivity()
 
             override fun onFailure(call: Call<EnrolledData?>, t: Throwable)
             {
-                Toast.makeText(this@VideoPlayer, "Failure " + t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@VideoPlayer, "Error : " + t.message, Toast.LENGTH_LONG).show()
             }
         })
 

@@ -40,7 +40,7 @@ android {
 dependencies {
 
 
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
 
@@ -56,14 +56,14 @@ dependencies {
 
 
     //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     //Gson
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     //for app bar layout
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.0.0'
 
     //mahendra input tag
     //implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

@@ -14,20 +14,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/approve_student"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.049"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.023" />
-
 
         <ImageView
             android:id="@+id/c_image"
@@ -96,9 +82,9 @@
 
             <TextView
                 android:id="@+id/faculty"
-                android:layout_width="148dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_width="198dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:text="Hiriyanna    B.E(cse),MTECH(cse) faculty information"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.832"
@@ -128,8 +114,9 @@
             <TextView
                 android:id="@+id/i_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
                 android:text="Jawaharlal Nehru National College Of Engineering Engineering school in Shimoga, Karnataka" />
 
         </TableRow>

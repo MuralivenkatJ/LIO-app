@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lio.Activities.Explore
 import com.example.lio.Helpers.RealPathUtil
 import com.example.lio.Helpers.ServiceBuilder
 import com.example.lio.Interfaces.Faculty
@@ -89,7 +90,7 @@ class FacultyRegister : AppCompatActivity() {
                 val context: Context = this
                 val realPathObj : RealPathUtil = RealPathUtil()
                 real_path = realPathObj.getPath(this, image_uri).toString()
-                Toast.makeText(this,"image uploaded " + real_path + " |",Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this,"image uploaded " + real_path + " |",Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -280,13 +281,13 @@ class FacultyRegister : AppCompatActivity() {
         var phone = findViewById<EditText>(R.id.phno).text.toString()
 
         var file : File = File(real_path)
-        Toast.makeText(this,"After File ",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this,"After File ",Toast.LENGTH_SHORT).show()
 
         val requestFile = RequestBody.create(okhttp3.MediaType.parse("image/*"), file)
-        Toast.makeText(this,"After requestion ",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this,"After requestion ",Toast.LENGTH_SHORT).show()
 
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-        Toast.makeText(this,"after Body ",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this,"after Body ",Toast.LENGTH_SHORT).show()
 
 
         //other data
@@ -310,6 +311,7 @@ class FacultyRegister : AppCompatActivity() {
                     if(response.isSuccessful)
                     {
                         Toast.makeText(this@FacultyRegister, response.body().toString(), Toast.LENGTH_LONG).show()
+                        startActivity(Intent(this@FacultyRegister, Explore::class.java))
                     }
                 }
             }

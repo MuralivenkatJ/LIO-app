@@ -50,6 +50,7 @@ class WishlistStudent : BaseDrawer()
         //for menu bar
         binding = StudentWishlistActivityMainBinding.inflate(layoutInflater)
         allocateActivityTitle("Wishlist")
+        setTitle("Wishlist")
         setContentView(binding.root)
         //for menu bar
 
@@ -162,7 +163,7 @@ class WishlistStudent : BaseDrawer()
                 if (responseBody != null)
                 {
                     //if the course is free it will directly enroll
-                    if(responseBody.msg == "This course has been enrolled")
+                    if(responseBody.msg == "This course has been enrolled" || responseBody.msg == "You are already enrolled for this course")
                     {
                         Toast.makeText(this@WishlistStudent, responseBody.msg, Toast.LENGTH_LONG).show()
                         startActivity(Intent(this@WishlistStudent, MyCoursesStudent::class.java))
@@ -210,7 +211,7 @@ class WishlistStudent : BaseDrawer()
 
             override fun onFailure(call: Call<MessageResponse>, t: Throwable)
             {
-                Toast.makeText(this@WishlistStudent, t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@WishlistStudent, "Error : " +  t.message, Toast.LENGTH_LONG).show()
             }
 
         })

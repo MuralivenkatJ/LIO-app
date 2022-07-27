@@ -54,6 +54,7 @@ class Approvals : BaseDrawer()
         //for menu bar
         binding = ApprovalsInstituteBinding.inflate(layoutInflater)
         allocateActivityTitle("Approvals")
+        setTitle("Approvals")
         setContentView(binding.root)
         //for menu bar
 
@@ -197,7 +198,7 @@ class Approvals : BaseDrawer()
 
             override fun onFailure(call: Call<MessageResponse>, t: Throwable)
             {
-                Toast.makeText(this@Approvals, t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@Approvals, "Error : " + t.message, Toast.LENGTH_LONG).show()
             }
 
         })
@@ -226,7 +227,7 @@ class Approvals : BaseDrawer()
 
             override fun onFailure(call: Call<MessageResponse>, t: Throwable)
             {
-                Toast.makeText(this@Approvals, t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@Approvals, "Error : " + t.message, Toast.LENGTH_LONG).show()
             }
 
         })
@@ -256,7 +257,7 @@ class Approvals : BaseDrawer()
 
             override fun onFailure(call: Call<MessageResponse>, t: Throwable)
             {
-                Toast.makeText(this@Approvals, t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@Approvals, "Error : " + t.message, Toast.LENGTH_LONG).show()
             }
         })
     }

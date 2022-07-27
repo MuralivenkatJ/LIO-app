@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lio.Activities.Student.MyCoursesStudent
 import com.example.lio.Activities.Student.PaymentInfoStudent
+import com.example.lio.Activities.Student.StudentLogin
 import com.example.lio.Activities.Student.WishlistStudent
 import com.example.lio.Helpers.ServiceBuilder
 import com.example.lio.Interfaces.Student
@@ -79,9 +80,13 @@ class UnenrolledCourse : AppCompatActivity()
         {
             enrollBtn.setOnClickListener {
                 Toast.makeText(this@UnenrolledCourse, "You have to login as student", Toast.LENGTH_LONG).show()
+                if(loggedInAs == "None")
+                    startActivity(Intent(this, StudentLogin::class.java))
             }
             wishlistBtn.setOnClickListener {
                 Toast.makeText(this@UnenrolledCourse, "You have to login as student", Toast.LENGTH_LONG).show()
+                if(loggedInAs == "None")
+                    startActivity(Intent(this, StudentLogin::class.java))
             }
         }
         else
@@ -163,7 +168,7 @@ class UnenrolledCourse : AppCompatActivity()
             }
 
             override fun onFailure(call: Call<UnenrollDataC?>?, t: Throwable?) {
-
+                Toast.makeText(this@UnenrolledCourse, "Error : " + t!!.message, Toast.LENGTH_LONG).show()
             }
         })
 
@@ -186,14 +191,14 @@ class UnenrolledCourse : AppCompatActivity()
                 if (responseBody != null)
                 {
                     //if the course is free it will directly enroll
-                    if(responseBody.msg == "This course has been enrolled")
+                    if(responseBody.msg == "This course has been enrolled" ||  responseBody.msg == "You are already enrolled for this course")
                     {
                         Toast.makeText(this@UnenrolledCourse, responseBody.msg, Toast.LENGTH_LONG).show()
                         startActivity(Intent(this@UnenrolledCourse, MyCoursesStudent::class.java))
                         return
                     }
                     else{
-                        Toast.makeText(this@UnenrolledCourse, responseBody.toString(), Toast.LENGTH_LONG).show()
+
                         if(responseBody.course != null && responseBody.institute != null)
                         {
                             var i = Intent(this@UnenrolledCourse, PaymentInfoStudent::class.java)
@@ -240,7 +245,7 @@ class UnenrolledCourse : AppCompatActivity()
 
             override fun onFailure(call: Call<MessageResponse>, t: Throwable)
             {
-                Toast.makeText(this@UnenrolledCourse, t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@UnenrolledCourse, "Error : " + t.message, Toast.LENGTH_LONG).show()
             }
 
         })

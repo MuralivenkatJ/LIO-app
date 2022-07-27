@@ -146,7 +146,8 @@
                         android:id="@+id/radio_course"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Course"/>
+                        android:text="Course"
+                        android:checked="true"/>
 
                     <RadioButton
                         android:id="@+id/radio_guided"

@@ -115,7 +115,7 @@ class PaymentInfoStudent : AppCompatActivity()
                 val context: Context = this
                 val realPathObj : RealPathUtil = RealPathUtil()
                 real_path = realPathObj.getPath(this, image_uri).toString()
-                Toast.makeText(this,"image uploaded " + real_path + " |",Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this,"image uploaded " + real_path + " |",Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -153,13 +153,13 @@ class PaymentInfoStudent : AppCompatActivity()
         var auth = "Bearer " + accessToken
 
         var file : File = File(real_path)
-        Toast.makeText(this,"After File ",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this,"After File ",Toast.LENGTH_SHORT).show()
 
         val requestFile = RequestBody.create(okhttp3.MediaType.parse("image/*"), file)
-        Toast.makeText(this,"After requestion ",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this,"After requestion ",Toast.LENGTH_SHORT).show()
 
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-        Toast.makeText(this,"after Body ",Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this,"after Body ",Toast.LENGTH_SHORT).show()
 
         //data in request body
         var utr: RequestBody = RequestBody.create(MultipartBody.FORM, utrid)
@@ -182,7 +182,7 @@ class PaymentInfoStudent : AppCompatActivity()
 
             override fun onFailure(call: Call<MessageResponse>, t: Throwable)
             {
-                Toast.makeText(this@PaymentInfoStudent, t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@PaymentInfoStudent, "Error : " + t.message, Toast.LENGTH_LONG).show()
             }
 
         })

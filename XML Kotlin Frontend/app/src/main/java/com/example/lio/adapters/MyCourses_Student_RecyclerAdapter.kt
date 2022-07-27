@@ -69,7 +69,7 @@ class MyCourses_Student_RecyclerAdapter(val context: Context, val userList: List
     {
         holder.itemCourse.text = userList[position].course.c_name
         holder.itemFaculty.text= userList[position].course.faculty.f_name
-        holder.itemViews.text= userList[position].course.views.toString()
+        holder.itemViews.text= userList[position].course.views.toString() + " views"
         holder.itemRating.text= userList[position].course.rating.toString()
 
         Picasso.get()

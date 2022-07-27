@@ -44,6 +44,7 @@ class MyCoursesFaculty : BaseDrawer()
         //for menu bar
         binding = MyCoursesFacultyBinding.inflate(layoutInflater)
         allocateActivityTitle("My Courses")
+        setTitle("My Courses")
         setContentView(binding.root)
         //for menu bar
 

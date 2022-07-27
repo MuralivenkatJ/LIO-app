@@ -48,6 +48,7 @@ class MyCoursesStudent : BaseDrawer()
         //for menu bar
         binding = MyCoursesStudentBinding.inflate(layoutInflater)
         allocateActivityTitle("My Courses")
+        setTitle("My Courses")
         setContentView(binding.root)
         //for menu bar
 
@@ -121,7 +122,7 @@ class MyCoursesStudent : BaseDrawer()
                     {
                         var c_id = responseBody.enrolled[position].course._id
 
-                        Toast.makeText(this@MyCoursesStudent, c_id, Toast.LENGTH_LONG).show()
+                        //Toast.makeText(this@MyCoursesStudent, c_id, Toast.LENGTH_LONG).show()
 
                         var i = Intent(this@MyCoursesStudent, VideoPlayer::class.java)
                         i.putExtra("accessToken", accessToken)
@@ -138,7 +139,7 @@ class MyCoursesStudent : BaseDrawer()
 
             override fun onFailure(call: Call<MyStudentData>, t: Throwable)
             {
-
+                Toast.makeText(this@MyCoursesStudent, "Error : " + t.message, Toast.LENGTH_LONG).show()
             }
 
         })

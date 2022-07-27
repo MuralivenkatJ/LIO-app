@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="85dp"
                 android:background="#8000ff"
-                android:onClick="registerStudent"
+                android:onClick="validate"
                 android:padding="15dp"
                 android:text="SIGN UP"
                 android:textColor="@color/white"
