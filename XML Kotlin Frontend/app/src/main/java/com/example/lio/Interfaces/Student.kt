@@ -1,6 +1,7 @@
 package com.example.lio.Interfaces
 
 
+import android.os.Message
 import com.example.lio.Models.Login.Login
 import com.example.lio.Models.Login.LoginResponse
 import com.example.lio.Models.MessageResponse
@@ -67,6 +68,14 @@ interface Student {
         @Path("c_id") c_id: String
     ):Call<MessageResponse>
 
+    @POST("student/review/")
+    @FormUrlEncoded
+    fun giveReview(
+        @Header("Authorization") auth: String,
+        @Field("c_id") c_id: String,
+        @Field("rate") rate: Float,
+        @Field("desc") desc: String
+    ):Call<MessageResponse>
 
 
     @Multipart

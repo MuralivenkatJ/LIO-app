@@ -6,6 +6,6 @@ data class MyCourses_Course(
     val faculty: MyCourses_Faculty,
     val image: String,
     val no_of_videos: Int,
-    val rating: Int,
+    val rating: Float,
     val views: Int
 )

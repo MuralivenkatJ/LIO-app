@@ -16,7 +16,7 @@ data class MyFaculty_Course(
     val playlistId: String,
     val price: Int,
     val quiz_questions: List<String>,
-    val rating: Int,
+    val rating: Float,
     val myFacultyReviews: List<MyFaculty_Review>,
     val skills: List<String>,
     val specialization: String,

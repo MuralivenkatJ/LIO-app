@@ -16,7 +16,7 @@ data class wishList_Course(
     val playlistId: String,
     val price: Int,
     val quiz_questions: List<String>,
-    val rating: Int,
+    val rating: Float,
     val wishListReviews: List<wishList_Review>,
     val skills: List<String>,
     val specialization: String,

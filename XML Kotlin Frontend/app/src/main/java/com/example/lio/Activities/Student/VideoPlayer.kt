@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -63,7 +64,10 @@ class VideoPlayer : YouTubeBaseActivity()
 
             override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?)
             {
-                Toast.makeText(this@VideoPlayer, p1.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(this@VideoPlayer, p1!!.name, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@VideoPlayer, p1.isUserRecoverableError().toString(), Toast.LENGTH_LONG).show()
+                var errorDialog = p1!!.getErrorDialog(this@VideoPlayer, p1!!.ordinal)
+                errorDialog.show()
             }
         })
 
@@ -170,5 +174,15 @@ class VideoPlayer : YouTubeBaseActivity()
             }
         })
 
+    }
+
+
+    fun reviewPage(v: View?)
+    {
+        var i = Intent(this, RatingStudent::class.java)
+        i.putExtra("c_id", c_id)
+        i.putExtra("accessToken", accessToken)
+
+        startActivity(i)
     }
 }

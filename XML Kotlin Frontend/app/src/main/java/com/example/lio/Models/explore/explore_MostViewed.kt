@@ -16,7 +16,7 @@ data class explore_MostViewed(
     val playlistId: String,
     val price: Int,
     val quiz_questions: List<String>,
-    val rating: Int,
+    val rating: Float,
     val exploreReviews: List<explore_Review>,
     val skills: List<String>,
     val specialization: String,
